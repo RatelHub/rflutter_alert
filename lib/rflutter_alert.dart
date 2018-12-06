@@ -1,7 +1,5 @@
 library rflutter_alert;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'src/basic_dialog.dart';
+export 'src/constants.dart';
+export 'src/popup_dialog_button.dart';
