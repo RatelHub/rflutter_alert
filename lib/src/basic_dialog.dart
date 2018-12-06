@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'animation_transition.dart';
 import 'popup_dialog_button.dart';
 import 'constants.dart';
 
@@ -21,12 +23,24 @@ class BasicDialog {
     this.buttons,
   });
 
-  show() {
-    showDialog(
+  void show() {
+    showGeneralDialog(
       context: context,
-      builder: (BuildContext context) {
+      pageBuilder: (BuildContext buildContext, Animation<double> animation,
+          Animation<double> secondaryAnimation) {
         return _buildDialog();
       },
+      barrierDismissible: true,
+      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+      barrierColor: Colors.black87,
+      transitionDuration: const Duration(milliseconds: 200),
+      transitionBuilder: (
+        BuildContext context,
+        Animation<double> animation,
+        Animation<double> secondaryAnimation,
+        Widget child,
+      ) =>
+          AnimationTransition.transitionFromBottom(animation, secondaryAnimation, child),
     );
   }
 
