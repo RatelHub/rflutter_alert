@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'alert_style.dart';
 import 'animation_transition.dart';
 import 'popup_dialog_button.dart';
 import 'constants.dart';
@@ -7,19 +8,19 @@ import 'constants.dart';
 class BasicDialog {
   final BuildContext context;
   final BasicDialogType type;
+  final AlertStyle alertStyle;
   final Image image;
-  final Text title;
-  final Text desc;
-  final ShapeBorder shape;
+  final String title;
+  final String desc;
   final List<PopupDialogButton> buttons;
 
   BasicDialog({
     @required this.context,
     this.type,
+    this.alertStyle = const AlertStyle(),
     this.image,
     @required this.title,
     @required this.desc,
-    this.shape,
     this.buttons,
   });
 
@@ -30,9 +31,9 @@ class BasicDialog {
           Animation<double> secondaryAnimation) {
         return _buildDialog();
       },
-      barrierDismissible: true,
+      barrierDismissible: alertStyle.overlayTapDismissible,
       barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
-      barrierColor: Colors.black87,
+      barrierColor: alertStyle.overlayColor,
       transitionDuration: const Duration(milliseconds: 200),
       transitionBuilder: (
         BuildContext context,
@@ -40,35 +41,61 @@ class BasicDialog {
         Animation<double> secondaryAnimation,
         Widget child,
       ) =>
-          AnimationTransition.transitionFromBottom(animation, secondaryAnimation, child),
+          _showAnimation(animation, secondaryAnimation, child),
     );
   }
 
   Widget _buildDialog() {
     return AlertDialog(
-      shape: shape ?? _defaultShape(),
+      shape: alertStyle.shapeBorder ?? _defaultShape(),
       title: Container(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SizedBox(
-                width: 96,
-                height: 96,
-                child: _getImage(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(
+                    height: 20,
+                    width: 20,
+                  ),
+                  SizedBox(
+                    width: 96,
+                    height: 96,
+                    child: _getImage(),
+                  ),
+                  alertStyle.showCloseButton
+                      ? _getCloseButton()
+                      : SizedBox(
+                          height: 20,
+                          width: 20,
+                        ),
+                ],
               ),
               SizedBox(
                 height: 15,
               ),
-              title,
+              Text(
+                title,
+                style: alertStyle.titleStyle,
+                textAlign: TextAlign.center,
+              ),
               SizedBox(
                 height: 10,
               ),
-              desc,
+              Text(
+                desc,
+                style: alertStyle.descStyle,
+                textAlign: TextAlign.center,
+              ),
             ],
           ),
         ),
       ),
+      contentPadding: alertStyle.buttonsPadding,
       content: Container(
         child: Row(
           children: _getButtons(),
@@ -99,6 +126,27 @@ class BasicDialog {
       );
     });
     return expandedButtons;
+  }
+
+  Widget _getCloseButton() {
+    return Container(
+      width: 20,
+      height: 20,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(
+            '$kImagePath/close.png',
+            package: 'rflutter_alert',
+          ),
+        ),
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () => Navigator.pop(context),
+        ),
+      ),
+    );
   }
 
   Image _getImage() {
@@ -136,5 +184,27 @@ class BasicDialog {
         break;
     }
     return response;
+  }
+
+  _showAnimation(animation, secondaryAnimation, child) {
+    if (alertStyle.animationType == AnimationType.fromRight) {
+      return AnimationTransition.transitionFromRight(
+          animation, secondaryAnimation, child);
+    } else if (alertStyle.animationType == AnimationType.fromLeft) {
+      return AnimationTransition.transitionFromLeft(
+          animation, secondaryAnimation, child);
+    } else if (alertStyle.animationType == AnimationType.fromBottom) {
+      return AnimationTransition.transitionFromBottom(
+          animation, secondaryAnimation, child);
+    } else if (alertStyle.animationType == AnimationType.inToOut) {
+      return AnimationTransition.transitionScaleInToOut(
+          animation, secondaryAnimation, child);
+    } else if (alertStyle.animationType == AnimationType.outToIn) {
+      return AnimationTransition.transitionScaleOutToIn(
+          animation, secondaryAnimation, child);
+    } else {
+      return AnimationTransition.transitionFromTop(
+          animation, secondaryAnimation, child);
+    }
   }
 }

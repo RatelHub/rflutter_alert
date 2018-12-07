@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'constants.dart';
 
 class AnimationTransition {
+
   /// Slide animation, from right to left (SlideTransition)
   static transitionFromRight(Animation<double> animation,
       Animation<double> secondaryAnimation, Widget child) {

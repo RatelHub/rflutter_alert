@@ -23,7 +23,6 @@ class PopupDialog extends StatelessWidget {
     return Container(
       child: Center(
         child: Column(
-          // crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             RaisedButton(
@@ -37,10 +36,12 @@ class PopupDialog extends StatelessWidget {
   }
 
   _onBasicAlertDialogPressed(context) {
+    var alertStyle = AlertStyle(animationType: AnimationType.fromBottom, showCloseButton: true, overlayTapDismissible: false);
     return BasicDialog(
       context: context,
-      title: Text("POPUP TİTLE"),
-      desc: Text("This area popup desc. Long text is here", textAlign: TextAlign.center,),
+      alertStyle: alertStyle,
+      title: "POPUP TİTLE",
+      desc: "This area popup desc. Long text is here",
       type: BasicDialogType.error,
       buttons: [
         PopupDialogButton(
@@ -50,9 +51,7 @@ class PopupDialog extends StatelessWidget {
         PopupDialogButton(
           child: Icon(Icons.perm_camera_mic),
           onPressed: () {},
-          gradient: LinearGradient(
-            colors: [Colors.red, Colors.black]
-          ),
+          gradient: LinearGradient(colors: [Colors.red, Colors.black]),
         ),
       ],
     ).show();

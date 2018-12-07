@@ -2,7 +2,14 @@
 enum BasicDialogType { error, success, info, warning }
 
 // Animation type
-enum AnimationType { fadeIn, fadeOut }
+enum AnimationType {
+  fromRight,
+  fromLeft,
+  fromTop,
+  fromBottom,
+  inToOut,
+  outToIn
+}
 
 // assets image path
 const String kImagePath = "assets/images";
