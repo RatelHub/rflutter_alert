@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class PopupDialogButton extends StatelessWidget {
+class DialogButton extends StatelessWidget {
   final Widget child;
   final double width;
   final double height;
@@ -9,10 +9,10 @@ class PopupDialogButton extends StatelessWidget {
   final BorderRadius radius;
   final Function onPressed;
 
-  PopupDialogButton({
+  DialogButton({
     Key key,
     @required this.child,
-    this.width = double.infinity,
+    this.width,
     this.height = 40.0,
     this.color,
     this.gradient,

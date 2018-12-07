@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 
 import 'alert_style.dart';
 import 'animation_transition.dart';
-import 'popup_dialog_button.dart';
+import 'dialog_button.dart';
 import 'constants.dart';
 
 class BasicDialog {
   final BuildContext context;
   final BasicDialogType type;
-  final AlertStyle alertStyle;
+  final AlertStyle style;
   final Image image;
   final String title;
   final String desc;
-  final List<PopupDialogButton> buttons;
+  final List<DialogButton> buttons;
 
   BasicDialog({
     @required this.context,
     this.type,
-    this.alertStyle = const AlertStyle(),
+    this.style = const AlertStyle(),
     this.image,
     @required this.title,
     @required this.desc,
@@ -31,10 +31,10 @@ class BasicDialog {
           Animation<double> secondaryAnimation) {
         return _buildDialog();
       },
-      barrierDismissible: alertStyle.overlayTapDismissible,
+      barrierDismissible: style.isOverlayTapDismiss,
       barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
-      barrierColor: alertStyle.overlayColor,
-      transitionDuration: const Duration(milliseconds: 200),
+      barrierColor: style.overlayColor,
+      transitionDuration: style.animationDuration,
       transitionBuilder: (
         BuildContext context,
         Animation<double> animation,
@@ -45,9 +45,13 @@ class BasicDialog {
     );
   }
 
+  // void dismiss() {
+  //   Navigator.pop(context);
+  // }
+
   Widget _buildDialog() {
     return AlertDialog(
-      shape: alertStyle.shapeBorder ?? _defaultShape(),
+      shape: style.alertBorder ?? _defaultShape(),
       title: Container(
         child: Center(
           child: Column(
@@ -62,12 +66,8 @@ class BasicDialog {
                     height: 20,
                     width: 20,
                   ),
-                  SizedBox(
-                    width: 96,
-                    height: 96,
-                    child: _getImage(),
-                  ),
-                  alertStyle.showCloseButton
+                  _getImage(),
+                  style.isCloseButton
                       ? _getCloseButton()
                       : SizedBox(
                           height: 20,
@@ -80,7 +80,7 @@ class BasicDialog {
               ),
               Text(
                 title,
-                style: alertStyle.titleStyle,
+                style: style.titleStyle,
                 textAlign: TextAlign.center,
               ),
               SizedBox(
@@ -88,16 +88,17 @@ class BasicDialog {
               ),
               Text(
                 desc,
-                style: alertStyle.descStyle,
+                style: style.descStyle,
                 textAlign: TextAlign.center,
               ),
             ],
           ),
         ),
       ),
-      contentPadding: alertStyle.buttonsPadding,
+      contentPadding: style.buttonAreaPadding,
       content: Container(
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: _getButtons(),
         ),
       ),
@@ -115,16 +116,22 @@ class BasicDialog {
 
   List<Widget> _getButtons() {
     List<Widget> expandedButtons = [];
-    buttons.forEach((button) {
-      expandedButtons.add(
-        Expanded(
-          child: Padding(
+    if (buttons != null)
+      buttons.forEach(
+        (button) {
+          var buttonWidget = Padding(
             padding: const EdgeInsets.only(left: 2, right: 2),
             child: button,
-          ),
-        ),
+          );
+          if (button.width != null && buttons.length == 1) {
+            expandedButtons.add(buttonWidget);
+          } else {
+            expandedButtons.add(Expanded(
+              child: buttonWidget,
+            ));
+          }
+        },
       );
-    });
     return expandedButtons;
   }
 
@@ -149,8 +156,8 @@ class BasicDialog {
     );
   }
 
-  Image _getImage() {
-    Image response = image;
+  Widget _getImage() {
+    Widget response = image;
     switch (type) {
       case BasicDialogType.success:
         response = Image.asset(
@@ -173,13 +180,16 @@ class BasicDialog {
       case BasicDialogType.warning:
         response = Image.asset(
           '$kImagePath/icon_alert.png',
-          package: 'popup_dialog',
+          package: 'rflutter_alert',
         );
+        break;
+      case BasicDialogType.none:
+        response = Container();
         break;
       default:
         response = Image.asset(
           '$kImagePath/icon_success.png',
-          package: 'popup_dialog',
+          package: 'rflutter_alert',
         );
         break;
     }
@@ -187,24 +197,20 @@ class BasicDialog {
   }
 
   _showAnimation(animation, secondaryAnimation, child) {
-    if (alertStyle.animationType == AnimationType.fromRight) {
-      return AnimationTransition.transitionFromRight(
+    if (style.animationType == AnimationType.fromRight) {
+      return AnimationTransition.fromRight(
           animation, secondaryAnimation, child);
-    } else if (alertStyle.animationType == AnimationType.fromLeft) {
-      return AnimationTransition.transitionFromLeft(
+    } else if (style.animationType == AnimationType.fromLeft) {
+      return AnimationTransition.fromLeft(animation, secondaryAnimation, child);
+    } else if (style.animationType == AnimationType.fromBottom) {
+      return AnimationTransition.fromBottom(
           animation, secondaryAnimation, child);
-    } else if (alertStyle.animationType == AnimationType.fromBottom) {
-      return AnimationTransition.transitionFromBottom(
-          animation, secondaryAnimation, child);
-    } else if (alertStyle.animationType == AnimationType.inToOut) {
-      return AnimationTransition.transitionScaleInToOut(
-          animation, secondaryAnimation, child);
-    } else if (alertStyle.animationType == AnimationType.outToIn) {
-      return AnimationTransition.transitionScaleOutToIn(
-          animation, secondaryAnimation, child);
+    } else if (style.animationType == AnimationType.grow) {
+      return AnimationTransition.grow(animation, secondaryAnimation, child);
+    } else if (style.animationType == AnimationType.shrink) {
+      return AnimationTransition.shrink(animation, secondaryAnimation, child);
     } else {
-      return AnimationTransition.transitionFromTop(
-          animation, secondaryAnimation, child);
+      return AnimationTransition.fromTop(animation, secondaryAnimation, child);
     }
   }
 }

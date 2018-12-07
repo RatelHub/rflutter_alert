@@ -4,7 +4,7 @@ import 'constants.dart';
 class AnimationTransition {
 
   /// Slide animation, from right to left (SlideTransition)
-  static transitionFromRight(Animation<double> animation,
+  static fromRight(Animation<double> animation,
       Animation<double> secondaryAnimation, Widget child) {
     return SlideTransition(
       position: Tween<Offset>(
@@ -16,7 +16,7 @@ class AnimationTransition {
   }
 
   /// Slide animation, from left to right (SlideTransition)
-  static transitionFromLeft(Animation<double> animation,
+  static fromLeft(Animation<double> animation,
       Animation<double> secondaryAnimation, Widget child) {
     return SlideTransition(
       position: Tween<Offset>(
@@ -28,7 +28,7 @@ class AnimationTransition {
   }
 
   /// Slide animation, from top to bottom (SlideTransition)
-  static transitionFromTop(Animation<double> animation,
+  static fromTop(Animation<double> animation,
       Animation<double> secondaryAnimation, Widget child) {
     return SlideTransition(
       position: Tween<Offset>(
@@ -40,7 +40,7 @@ class AnimationTransition {
   }
 
   /// Slide animation, from top to bottom (SlideTransition)
-  static transitionFromBottom(Animation<double> animation,
+  static fromBottom(Animation<double> animation,
       Animation<double> secondaryAnimation, Widget child) {
     return SlideTransition(
       position: Tween<Offset>(
@@ -52,7 +52,7 @@ class AnimationTransition {
   }
 
   /// Scale animation, from in to out (ScaleTransition)
-  static transitionScaleInToOut(Animation<double> animation,
+  static grow(Animation<double> animation,
       Animation<double> secondaryAnimation, Widget child) {
     return ScaleTransition(
       scale: Tween<double>(
@@ -73,11 +73,11 @@ class AnimationTransition {
   }
 
   /// Scale animation, from out to in (ScaleTransition)
-  static transitionScaleOutToIn(Animation<double> animation,
+  static shrink(Animation<double> animation,
       Animation<double> secondaryAnimation, Widget child) {
     return ScaleTransition(
       scale: Tween<double>(
-        begin: 1.5,
+        begin: 1.2,
         end: 1.0,
       ).animate(
         CurvedAnimation(

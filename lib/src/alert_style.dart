@@ -3,19 +3,21 @@ import 'constants.dart';
 
 class AlertStyle {
   final AnimationType animationType;
-  final ShapeBorder shapeBorder;
-  final bool showCloseButton;
-  final bool overlayTapDismissible;
+  final Duration animationDuration;
+  final ShapeBorder alertBorder;
+  final bool isCloseButton;
+  final bool isOverlayTapDismiss;
   final Color overlayColor;
   final TextStyle titleStyle;
   final TextStyle descStyle;
-  final EdgeInsets buttonsPadding;
+  final EdgeInsets buttonAreaPadding;
 
   const AlertStyle({
     this.animationType = AnimationType.fromBottom,
-    this.shapeBorder,
-    this.showCloseButton = false,
-    this.overlayTapDismissible = true,
+    this.animationDuration = const Duration(milliseconds: 200),
+    this.alertBorder,
+    this.isCloseButton = true,
+    this.isOverlayTapDismiss = true,
     this.overlayColor = Colors.black87,
     this.titleStyle = const TextStyle(
         color: Colors.black,
@@ -27,6 +29,6 @@ class AlertStyle {
         fontWeight: FontWeight.w400,
         fontStyle: FontStyle.normal,
         fontSize: 18.0),
-    this.buttonsPadding = const EdgeInsets.all(15.0),
+    this.buttonAreaPadding = const EdgeInsets.all(20.0),
   });
 }

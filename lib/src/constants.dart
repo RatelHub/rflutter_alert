@@ -1,5 +1,5 @@
 // default type for basic alert dialog
-enum BasicDialogType { error, success, info, warning }
+enum BasicDialogType { error, success, info, warning, none }
 
 // Animation type
 enum AnimationType {
@@ -7,8 +7,8 @@ enum AnimationType {
   fromLeft,
   fromTop,
   fromBottom,
-  inToOut,
-  outToIn
+  grow,
+  shrink
 }
 
 // assets image path
