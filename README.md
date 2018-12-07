@@ -1,8 +1,32 @@
+# RFlutter Alert
+Super customizable and easy-to-use alert/popup dialogs for Flutter.
+<br/><br/>
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://pub.dartlang.org/packages/fluro)
 
-## Version compatability
+<p>
+<img src="https://ratel.com.tr/hub/rflutter_alert.gif"> 
+<img src="https://ratel.com.tr/hub/rflutter_alert_success.png" width="250">
+</p>
 
-See CHANGELOG for all breaking (and non-breaking) changes.
+<p>
+<img src="https://ratel.com.tr/hub/rflutter_alert_error.png"  width="250">
+<img src="https://ratel.com.tr/hub/rflutter_alert_warning.png"  width="250">
+<img src="https://ratel.com.tr/hub/rflutter_alert_info.png"  width="250">
+</p>
 
+## Features
+
+- Single line basic alert
+- Adding buttons dynamically (as much as you want)
+- Predefined beautiful alert styles (success, error, warning, info)
+- Reusable alert styles
+- Super customizable
+	- Change animation (fromTop, fromBottom, fromRight, fromLeft, grow, shrink)
+	- Set animation duration
+	- Show/hide close button
+	- Set overlay tap to dismiss
+	- Assign Title and desc styles
+	- Change dialog border style
 ## Getting started
 
 You must add the library as a dependency to your project.
@@ -14,44 +38,24 @@ dependencies:
 You can also reference the git repo directly if you want:
 ```yaml
 dependencies:
- fluro:
+ rflutter_alert:
    git: git://github.com/RatelHub/rflutter_alert.git
 ```
 
 
 You should then run `flutter packages get`
 
+
 ## Example Project
 
-There is a pretty sweet example project in the `example` folder. Check it out. Otherwise, keep reading to get up and running.
+There is a detailed example project in the `example` folder. You can directly run and play on it. There are code snippets from example project below.
 
-## AlertStyle
-
-Use the `AlertStyle` class to customize.
-```dart
-    var alertStyle = AlertStyle(
-      animationType: AnimationType.fromTop,
-      isCloseButton: false,
-      isOverlayTapDismiss: false,
-      descStyle: TextStyle(fontWeight: FontWeight.bold),
-      animationDuration: Duration(milliseconds: 400),
-      alertBorder: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(0.0),
-        side: BorderSide(
-          color: Colors.grey,
-        ),
-      ),
-      titleStyle: TextStyle(
-        color: Colors.red,
-      ),
-    );
-```
 
 ## Basic Alert
 
 
 ```dart
-BasicDialog(context: context, title: "RFLUTTER ALERT", desc: "Flutter is more awesome with RFlutter Alert.").show();
+BasicDialog(context: context, title: "RFLUTTER", desc: "Flutter is awesome.").show();
 ```
 
 ## Alert with Button
@@ -109,9 +113,30 @@ BasicDialog(context: context, title: "RFLUTTER ALERT", desc: "Flutter is more aw
     ).show();
 ```
 
+
 ## Alert with Style
+### AlertStyle
 
-
+Use the `AlertStyle` class to customize.
+```dart
+    var alertStyle = AlertStyle(
+      animationType: AnimationType.fromTop,
+      isCloseButton: false,
+      isOverlayTapDismiss: false,
+      descStyle: TextStyle(fontWeight: FontWeight.bold),
+      animationDuration: Duration(milliseconds: 400),
+      alertBorder: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(0.0),
+        side: BorderSide(
+          color: Colors.grey,
+        ),
+      ),
+      titleStyle: TextStyle(
+        color: Colors.red,
+      ),
+    );
+```
+And assing your `AlertStyle` object to BasicDialog's `style` field.
 ```dart
     BasicDialog(
       context: context,
@@ -132,3 +157,15 @@ BasicDialog(context: context, title: "RFLUTTER ALERT", desc: "Flutter is more aw
       ],
     ).show();
 ```
+## Contributions
+* If you **found a bug**, open an issue.
+* If you **have a feature request**, open an issue.
+* If you **want to contribute**, submit a pull request.
+## Version compatability
+
+See CHANGELOG for all breaking (and non-breaking) changes.
+
+<hr/>
+<p>
+Made with ❤ by <a href="https://ratel.com.tr">Ratel</a>
+</p>
