@@ -116,7 +116,7 @@ class BasicDialog {
 
   List<Widget> _getButtons() {
     List<Widget> expandedButtons = [];
-    if (buttons != null)
+    if (buttons != null) {
       buttons.forEach(
         (button) {
           var buttonWidget = Padding(
@@ -132,6 +132,20 @@ class BasicDialog {
           }
         },
       );
+    } else {
+      expandedButtons.add(
+        Expanded(
+          child: DialogButton(
+            child: Text(
+              "CANCEL",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () => Navigator.pop(context),
+          ),
+        ),
+      );
+    }
+
     return expandedButtons;
   }
 
@@ -167,19 +181,19 @@ class BasicDialog {
         break;
       case BasicDialogType.error:
         response = Image.asset(
-          '$kImagePath/icon_alert.png',
+          '$kImagePath/icon_error.png',
           package: 'rflutter_alert',
         );
         break;
       case BasicDialogType.info:
         response = Image.asset(
-          '$kImagePath/icon_success.png',
+          '$kImagePath/icon_info.png',
           package: 'rflutter_alert',
         );
         break;
       case BasicDialogType.warning:
         response = Image.asset(
-          '$kImagePath/icon_alert.png',
+          '$kImagePath/icon_warning.png',
           package: 'rflutter_alert',
         );
         break;

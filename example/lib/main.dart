@@ -7,6 +7,7 @@ class RatelApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: Text('RFlutter Alert by Ratel'),
@@ -131,63 +132,14 @@ class PopupDialog extends StatelessWidget {
       buttons: [
         DialogButton(
           child: Text(
-            "FLAT",
+            "COOL",
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
           onPressed: () => Navigator.pop(context),
           color: Color.fromRGBO(0, 179, 134, 1.0),
+          radius: BorderRadius.circular(0.0),
         ),
-        DialogButton(
-          child: Text(
-            "GRADIENT",
-            style: TextStyle(color: Colors.white, fontSize: 20),
-          ),
-          onPressed: () => Navigator.pop(context),
-          gradient: LinearGradient(colors: [
-            Color.fromRGBO(116, 116, 191, 1.0),
-            Color.fromRGBO(52, 138, 199, 1.0)
-          ]),
-        )
       ],
     ).show();
-  }
-
-  _onBasicAlertDialogPressed(context) {
-    var alertStyle = AlertStyle(
-        animationType: AnimationType.fromRight,
-        isCloseButton: true,
-        isOverlayTapDismiss: false,
-        titleStyle: TextStyle(color: Colors.red));
-    var alertDialog = BasicDialog(
-        context: context,
-        style: alertStyle,
-        title: "POPUP TİTLE",
-        desc: "This area popup desc. Long text is here",
-        type: BasicDialogType.error,
-        buttons: [
-          DialogButton(
-            child: Text(
-              "Cancel",
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-            height: 50,
-            color: Colors.blueGrey,
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          DialogButton(
-            child: Text(
-              "Cancel",
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-            height: 50,
-            color: Colors.blueGrey,
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-        ]);
-    alertDialog.show();
   }
 }
