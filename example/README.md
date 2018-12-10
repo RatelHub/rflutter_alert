@@ -50,7 +50,7 @@ class PopupDialog extends StatelessWidget {
   }
 
   _onBasicAlertPressed(context) {
-    BasicDialog(
+    Alert(
             context: context,
             title: "RFLUTTER ALERT",
             desc: "Flutter is more awesome with RFlutter Alert.")
@@ -58,9 +58,9 @@ class PopupDialog extends StatelessWidget {
   }
 
   _onAlertButtonPressed(context) {
-    BasicDialog(
+    Alert(
       context: context,
-      type: BasicDialogType.error,
+      type: AlertType.error,
       title: "RFLUTTER ALERT",
       desc: "Flutter is more awesome with RFlutter Alert.",
       buttons: [
@@ -77,9 +77,9 @@ class PopupDialog extends StatelessWidget {
   }
 
   _onAlertButtonsPressed(context) {
-    BasicDialog(
+    Alert(
       context: context,
-      type: BasicDialogType.warning,
+      type: AlertType.warning,
       title: "RFLUTTER ALERT",
       desc: "Flutter is more awesome with RFlutter Alert.",
       buttons: [
@@ -124,10 +124,10 @@ class PopupDialog extends StatelessWidget {
       ),
     );
 
-    BasicDialog(
+    Alert(
       context: context,
       style: alertStyle,
-      type: BasicDialogType.info,
+      type: AlertType.info,
       title: "RFLUTTER ALERT",
       desc: "Flutter is more awesome with RFlutter Alert.",
       buttons: [

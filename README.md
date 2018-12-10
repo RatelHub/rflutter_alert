@@ -55,16 +55,16 @@ There is a detailed example project in the `example` folder. You can directly ru
 
 
 ```dart
-BasicDialog(context: context, title: "RFLUTTER", desc: "Flutter is awesome.").show();
+Alert(context: context, title: "RFLUTTER", desc: "Flutter is awesome.").show();
 ```
 
 ## Alert with Button
 
 
 ```dart
-    BasicDialog(
+    Alert(
       context: context,
-      type: BasicDialogType.error,
+      type: AlertType.error,
       title: "RFLUTTER ALERT",
       desc: "Flutter is more awesome with RFlutter Alert.",
       buttons: [
@@ -84,9 +84,9 @@ BasicDialog(context: context, title: "RFLUTTER", desc: "Flutter is awesome.").sh
 
 
 ```dart
-    BasicDialog(
+    Alert(
       context: context,
-      type: BasicDialogType.warning,
+      type: AlertType.warning,
       title: "RFLUTTER ALERT",
       desc: "Flutter is more awesome with RFlutter Alert.",
       buttons: [
@@ -136,12 +136,12 @@ Use the `AlertStyle` class to customize.
       ),
     );
 ```
-And assing your `AlertStyle` object to BasicDialog's `style` field.
+And assing your `AlertStyle` object to Alert's `style` field.
 ```dart
-    BasicDialog(
+    Alert(
       context: context,
       style: alertStyle,
-      type: BasicDialogType.info,
+      type: AlertType.info,
       title: "RFLUTTER ALERT",
       desc: "Flutter is more awesome with RFlutter Alert.",
       buttons: [
