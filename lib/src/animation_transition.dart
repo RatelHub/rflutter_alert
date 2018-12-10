@@ -1,6 +1,16 @@
+/*
+ * rflutter_alert
+ * Created by Ratel
+ * https://ratel.com.tr
+ * 
+ * Copyright (c) 2018 Ratel, LLC. All rights reserved.
+ * See LICENSE for distribution and usage details.
+ */
 import 'package:flutter/material.dart';
-import 'constants.dart';
 
+/// Predefined functions for transition animations
+/// 
+/// Exp: AnimationTransition.fromRight(animation, secondaryAnimation, child);
 class AnimationTransition {
 
   /// Slide animation, from right to left (SlideTransition)

@@ -1,7 +1,7 @@
 # RFlutter Alert
 RFlutter Alert is super customizable and easy-to-use alert/popup dialogs for Flutter. You may create reusable alert styles or add buttons as much as you want with ease.
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://pub.dartlang.org/packages/rflutter_alert)
+[![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)](https://pub.dartlang.org/packages/rflutter_alert)
 
 <p>
 <img src="https://github.com/ozibrahim/files/raw/master/rflutter_alert.gif"> 
@@ -32,7 +32,7 @@ RFlutter Alert is super customizable and easy-to-use alert/popup dialogs for Flu
 You must add the library as a dependency to your project.
 ```yaml
 dependencies:
- rflutter_alert: ^1.0.0
+ rflutter_alert: ^1.0.1
 ```
 
 You can also reference the git repo directly if you want:

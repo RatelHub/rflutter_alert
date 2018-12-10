@@ -1,3 +1,11 @@
+/*
+ * rflutter_alert
+ * Created by Ratel
+ * https://ratel.com.tr
+ * 
+ * Copyright (c) 2018 Ratel, LLC. All rights reserved.
+ * See LICENSE for distribution and usage details.
+ */
 import 'package:flutter/material.dart';
 
 import 'alert_style.dart';
@@ -5,25 +13,32 @@ import 'animation_transition.dart';
 import 'dialog_button.dart';
 import 'constants.dart';
 
-class BasicDialog {
+/// Main class to create alerts.
+///
+/// You must call the "show()" method to view the alert class you have defined.
+class Alert {
   final BuildContext context;
-  final BasicDialogType type;
+  final AlertType type;
   final AlertStyle style;
   final Image image;
   final String title;
   final String desc;
   final List<DialogButton> buttons;
 
-  BasicDialog({
+  /// Alert constructor
+  ///
+  /// [context], [title] are required.
+  Alert({
     @required this.context,
     this.type,
     this.style = const AlertStyle(),
     this.image,
     @required this.title,
-    @required this.desc,
+    this.desc,
     this.buttons,
   });
 
+  /// Displays defined alert window
   void show() {
     showGeneralDialog(
       context: context,
@@ -45,10 +60,12 @@ class BasicDialog {
     );
   }
 
+  // Will be added in next version.
   // void dismiss() {
   //   Navigator.pop(context);
   // }
 
+  // Alert dialog content widget
   Widget _buildDialog() {
     return AlertDialog(
       shape: style.alertBorder ?? _defaultShape(),
@@ -84,8 +101,9 @@ class BasicDialog {
                 textAlign: TextAlign.center,
               ),
               SizedBox(
-                height: 10,
+                height: desc == null ? 0 : 10,
               ),
+              desc == null ? Container() :
               Text(
                 desc,
                 style: style.descStyle,
@@ -105,6 +123,7 @@ class BasicDialog {
     );
   }
 
+  // Returns alert default border style
   ShapeBorder _defaultShape() {
     return RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
@@ -114,6 +133,7 @@ class BasicDialog {
     );
   }
 
+  // Returns defined buttons. Default: Cancel Button
   List<Widget> _getButtons() {
     List<Widget> expandedButtons = [];
     if (buttons != null) {
@@ -149,6 +169,7 @@ class BasicDialog {
     return expandedButtons;
   }
 
+  // Returns the close button on the top right
   Widget _getCloseButton() {
     return Container(
       width: 20,
@@ -170,34 +191,35 @@ class BasicDialog {
     );
   }
 
+// Returns alert image for icon
   Widget _getImage() {
     Widget response = image;
     switch (type) {
-      case BasicDialogType.success:
+      case AlertType.success:
         response = Image.asset(
           '$kImagePath/icon_success.png',
           package: 'rflutter_alert',
         );
         break;
-      case BasicDialogType.error:
+      case AlertType.error:
         response = Image.asset(
           '$kImagePath/icon_error.png',
           package: 'rflutter_alert',
         );
         break;
-      case BasicDialogType.info:
+      case AlertType.info:
         response = Image.asset(
           '$kImagePath/icon_info.png',
           package: 'rflutter_alert',
         );
         break;
-      case BasicDialogType.warning:
+      case AlertType.warning:
         response = Image.asset(
           '$kImagePath/icon_warning.png',
           package: 'rflutter_alert',
         );
         break;
-      case BasicDialogType.none:
+      case AlertType.none:
         response = Container();
         break;
       default:
@@ -210,6 +232,7 @@ class BasicDialog {
     return response;
   }
 
+// Shows alert with selected animation
   _showAnimation(animation, secondaryAnimation, child) {
     if (style.animationType == AnimationType.fromRight) {
       return AnimationTransition.fromRight(

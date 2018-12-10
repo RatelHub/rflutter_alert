@@ -48,20 +48,22 @@ class PopupDialog extends StatelessWidget {
     );
   }
 
+// The easiest way for creating RFlutter Alert
   _onBasicAlertPressed(context) {
-    BasicDialog(
-            context: context,
-            title: "RFLUTTER ALERT",
-            desc: "Flutter is more awesome with RFlutter Alert.")
-        .show();
+    Alert(
+      context: context,
+      title: "RFLUTTER ALERT",
+      desc: "Flutter is better with RFlutter Alert."
+    ).show();
   }
 
+// Alert with single button.
   _onAlertButtonPressed(context) {
-    BasicDialog(
+    Alert(
       context: context,
-      type: BasicDialogType.error,
+      type: AlertType.error,
       title: "RFLUTTER ALERT",
-      desc: "Flutter is more awesome with RFlutter Alert.",
+      desc: "Flutter is better with RFlutter Alert.",
       buttons: [
         DialogButton(
           child: Text(
@@ -75,12 +77,13 @@ class PopupDialog extends StatelessWidget {
     ).show();
   }
 
+// Alert with multiple and custom buttons
   _onAlertButtonsPressed(context) {
-    BasicDialog(
+    Alert(
       context: context,
-      type: BasicDialogType.warning,
+      type: AlertType.warning,
       title: "RFLUTTER ALERT",
-      desc: "Flutter is more awesome with RFlutter Alert.",
+      desc: "Flutter is better with RFlutter Alert.",
       buttons: [
         DialogButton(
           child: Text(
@@ -105,7 +108,10 @@ class PopupDialog extends StatelessWidget {
     ).show();
   }
 
+// Advanced using of alerts
   _onAlertWithStylePressed(context) {
+
+    // Reusable alert style
     var alertStyle = AlertStyle(
       animationType: AnimationType.fromTop,
       isCloseButton: false,
@@ -123,12 +129,13 @@ class PopupDialog extends StatelessWidget {
       ),
     );
 
-    BasicDialog(
+    // Alert dialog using custom alert style
+    Alert(
       context: context,
       style: alertStyle,
-      type: BasicDialogType.info,
+      type: AlertType.info,
       title: "RFLUTTER ALERT",
-      desc: "Flutter is more awesome with RFlutter Alert.",
+      desc: "Flutter is better with RFlutter Alert.",
       buttons: [
         DialogButton(
           child: Text(

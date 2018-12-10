@@ -1,7 +1,16 @@
-// default type for basic alert dialog
-enum BasicDialogType { error, success, info, warning, none }
+/*
+ * rflutter_alert
+ * Created by Ratel
+ * https://ratel.com.tr
+ * 
+ * Copyright (c) 2018 Ratel, LLC. All rights reserved.
+ * See LICENSE for distribution and usage details.
+ */
 
-// Animation type
+/// Alert types
+enum AlertType { error, success, info, warning, none }
+
+/// Alert animation types
 enum AnimationType {
   fromRight,
   fromLeft,
@@ -11,5 +20,5 @@ enum AnimationType {
   shrink
 }
 
-// assets image path
+/// Library images path
 const String kImagePath = "assets/images";
