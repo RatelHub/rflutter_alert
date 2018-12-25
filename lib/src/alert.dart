@@ -23,6 +23,7 @@ class Alert {
   final Image image;
   final String title;
   final String desc;
+  final Widget content;
   final List<DialogButton> buttons;
 
   /// Alert constructor
@@ -35,6 +36,7 @@ class Alert {
     this.image,
     @required this.title,
     this.desc,
+    this.content,
     this.buttons,
   });
 
@@ -60,7 +62,7 @@ class Alert {
     );
   }
 
-  // Will be added in next version.
+// Will be added in next version.
   // void dismiss() {
   //   Navigator.pop(context);
   // }
@@ -69,46 +71,41 @@ class Alert {
   Widget _buildDialog() {
     return AlertDialog(
       shape: style.alertBorder ?? _defaultShape(),
+      titlePadding: EdgeInsets.all(0.0),
       title: Container(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  SizedBox(
-                    height: 20,
-                    width: 20,
-                  ),
-                  _getImage(),
-                  style.isCloseButton
-                      ? _getCloseButton()
-                      : SizedBox(
-                          height: 20,
-                          width: 20,
-                        ),
-                ],
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Text(
-                title,
-                style: style.titleStyle,
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(
-                height: desc == null ? 0 : 10,
-              ),
-              desc == null ? Container() :
-              Text(
-                desc,
-                style: style.descStyle,
-                textAlign: TextAlign.center,
-              ),
+              _getCloseButton(),
+              Padding(
+                padding: EdgeInsets.fromLTRB(
+                    20, (style.isCloseButton ? 0 : 20), 20, 0),
+                child: Column(
+                  children: <Widget>[
+                    _getImage(),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      title,
+                      style: style.titleStyle,
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(
+                      height: desc == null ? 5 : 10,
+                    ),
+                    desc == null
+                        ? Container()
+                        : Text(
+                            desc,
+                            style: style.descStyle,
+                            textAlign: TextAlign.center,
+                          ),
+                    content == null ? Container() : content,
+                  ],
+                ),
+              )
             ],
           ),
         ),
@@ -131,6 +128,36 @@ class Alert {
         color: Colors.blueGrey,
       ),
     );
+  }
+
+// Returns the close button on the top right
+  Widget _getCloseButton() {
+    return style.isCloseButton
+        ? Padding(
+            padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
+            child: Container(
+              alignment: FractionalOffset.topRight,
+              child: Container(
+                width: 20,
+                height: 20,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                      '$kImagePath/close.png',
+                      package: 'rflutter_alert',
+                    ),
+                  ),
+                ),
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onTap: () => Navigator.pop(context),
+                  ),
+                ),
+              ),
+            ),
+          )
+        : Container();
   }
 
   // Returns defined buttons. Default: Cancel Button
@@ -169,31 +196,9 @@ class Alert {
     return expandedButtons;
   }
 
-  // Returns the close button on the top right
-  Widget _getCloseButton() {
-    return Container(
-      width: 20,
-      height: 20,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(
-            '$kImagePath/close.png',
-            package: 'rflutter_alert',
-          ),
-        ),
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: () => Navigator.pop(context),
-        ),
-      ),
-    );
-  }
-
 // Returns alert image for icon
   Widget _getImage() {
-    Widget response = image;
+    Widget response = image ?? Container();
     switch (type) {
       case AlertType.success:
         response = Image.asset(
@@ -221,12 +226,6 @@ class Alert {
         break;
       case AlertType.none:
         response = Container();
-        break;
-      default:
-        response = Image.asset(
-          '$kImagePath/icon_success.png',
-          package: 'rflutter_alert',
-        );
         break;
     }
     return response;

@@ -41,7 +41,15 @@ class PopupDialog extends StatelessWidget {
             RaisedButton(
               child: Text('Alert with Style'),
               onPressed: () => _onAlertWithStylePressed(context),
-            )
+            ),
+            RaisedButton(
+              child: Text('Alert with Custom Image'),
+              onPressed: () => _onAlertWithCustomImagePressed(context),
+            ),
+            RaisedButton(
+              child: Text('Alert with Custom Content'),
+              onPressed: () => _onAlertWithCustomContentPressed(context),
+            ),
           ],
         ),
       ),
@@ -51,10 +59,10 @@ class PopupDialog extends StatelessWidget {
 // The easiest way for creating RFlutter Alert
   _onBasicAlertPressed(context) {
     Alert(
-      context: context,
-      title: "RFLUTTER ALERT",
-      desc: "Flutter is better with RFlutter Alert."
-    ).show();
+            context: context,
+            title: "RFLUTTER ALERT",
+            desc: "Flutter is better with RFlutter Alert.")
+        .show();
   }
 
 // Alert with single button.
@@ -110,11 +118,10 @@ class PopupDialog extends StatelessWidget {
 
 // Advanced using of alerts
   _onAlertWithStylePressed(context) {
-
     // Reusable alert style
     var alertStyle = AlertStyle(
       animationType: AnimationType.fromTop,
-      isCloseButton: false,
+      isCloseButton: true,
       isOverlayTapDismiss: false,
       descStyle: TextStyle(fontWeight: FontWeight.bold),
       animationDuration: Duration(milliseconds: 400),
@@ -148,5 +155,46 @@ class PopupDialog extends StatelessWidget {
         ),
       ],
     ).show();
+  }
+
+  _onAlertWithCustomImagePressed(context) {
+    Alert(
+      context: context,
+      title: "RFLUTTER ALERT",
+      desc: "Flutter is better with RFlutter Alert.",
+      image: Image.asset("assets/success.png"),
+    ).show();
+  }
+
+  _onAlertWithCustomContentPressed(context) {
+    Alert(
+        context: context,
+        title: "LOGIN",
+        content: Column(
+          children: <Widget>[
+            TextField(
+              decoration: InputDecoration(
+                icon: Icon(Icons.account_circle),
+                labelText: 'Username',
+              ),
+            ),
+            TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                icon: Icon(Icons.lock),
+                labelText: 'Password',
+              ),
+            ),
+          ],
+        ),
+        buttons: [
+          DialogButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(
+              "LOGIN",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+          )
+        ]).show();
   }
 }
