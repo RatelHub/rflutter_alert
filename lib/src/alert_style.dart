@@ -35,7 +35,7 @@ class AlertStyle {
     this.animationType = AnimationType.fromBottom,
     this.animationDuration = const Duration(milliseconds: 200),
     this.alertBorder,
-    this.isCloseButton = false,
+    this.isCloseButton = true,
     this.isOverlayTapDismiss = true,
     this.overlayColor = Colors.black87,
     this.titleStyle = const TextStyle(

@@ -61,7 +61,7 @@ class PopupDialog extends StatelessWidget {
     Alert(
             context: context,
             title: "RFLUTTER ALERT",
-            desc: "Flutter is better with RFlutter Alert.")
+            desc: "Flutter is more awesome with RFlutter Alert.")
         .show();
   }
 
@@ -71,7 +71,7 @@ class PopupDialog extends StatelessWidget {
       context: context,
       type: AlertType.error,
       title: "RFLUTTER ALERT",
-      desc: "Flutter is better with RFlutter Alert.",
+      desc: "Flutter is more awesome with RFlutter Alert.",
       buttons: [
         DialogButton(
           child: Text(
@@ -91,7 +91,7 @@ class PopupDialog extends StatelessWidget {
       context: context,
       type: AlertType.warning,
       title: "RFLUTTER ALERT",
-      desc: "Flutter is better with RFlutter Alert.",
+      desc: "Flutter is more awesome with RFlutter Alert.",
       buttons: [
         DialogButton(
           child: Text(
@@ -121,7 +121,7 @@ class PopupDialog extends StatelessWidget {
     // Reusable alert style
     var alertStyle = AlertStyle(
       animationType: AnimationType.fromTop,
-      isCloseButton: true,
+      isCloseButton: false,
       isOverlayTapDismiss: false,
       descStyle: TextStyle(fontWeight: FontWeight.bold),
       animationDuration: Duration(milliseconds: 400),
@@ -142,7 +142,7 @@ class PopupDialog extends StatelessWidget {
       style: alertStyle,
       type: AlertType.info,
       title: "RFLUTTER ALERT",
-      desc: "Flutter is better with RFlutter Alert.",
+      desc: "Flutter is more awesome with RFlutter Alert.",
       buttons: [
         DialogButton(
           child: Text(
@@ -157,15 +157,16 @@ class PopupDialog extends StatelessWidget {
     ).show();
   }
 
+// Alert custom images
   _onAlertWithCustomImagePressed(context) {
     Alert(
       context: context,
       title: "RFLUTTER ALERT",
-      desc: "Flutter is better with RFlutter Alert.",
+      desc: "Flutter is more awesome with RFlutter Alert.",
       image: Image.asset("assets/success.png"),
     ).show();
   }
-
+// Alert custom content
   _onAlertWithCustomContentPressed(context) {
     Alert(
         context: context,

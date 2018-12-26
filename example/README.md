@@ -42,13 +42,22 @@ class PopupDialog extends StatelessWidget {
             RaisedButton(
               child: Text('Alert with Style'),
               onPressed: () => _onAlertWithStylePressed(context),
-            )
+            ),
+            RaisedButton(
+              child: Text('Alert with Custom Image'),
+              onPressed: () => _onAlertWithCustomImagePressed(context),
+            ),
+            RaisedButton(
+              child: Text('Alert with Custom Content'),
+              onPressed: () => _onAlertWithCustomContentPressed(context),
+            ),
           ],
         ),
       ),
     );
   }
 
+// The easiest way for creating RFlutter Alert
   _onBasicAlertPressed(context) {
     Alert(
             context: context,
@@ -57,6 +66,7 @@ class PopupDialog extends StatelessWidget {
         .show();
   }
 
+// Alert with single button.
   _onAlertButtonPressed(context) {
     Alert(
       context: context,
@@ -76,6 +86,7 @@ class PopupDialog extends StatelessWidget {
     ).show();
   }
 
+// Alert with multiple and custom buttons
   _onAlertButtonsPressed(context) {
     Alert(
       context: context,
@@ -106,7 +117,9 @@ class PopupDialog extends StatelessWidget {
     ).show();
   }
 
+// Advanced using of alerts
   _onAlertWithStylePressed(context) {
+    // Reusable alert style
     var alertStyle = AlertStyle(
       animationType: AnimationType.fromTop,
       isCloseButton: false,
@@ -124,6 +137,7 @@ class PopupDialog extends StatelessWidget {
       ),
     );
 
+    // Alert dialog using custom alert style
     Alert(
       context: context,
       style: alertStyle,
@@ -142,6 +156,48 @@ class PopupDialog extends StatelessWidget {
         ),
       ],
     ).show();
+  }
+
+// Alert custom images
+  _onAlertWithCustomImagePressed(context) {
+    Alert(
+      context: context,
+      title: "RFLUTTER ALERT",
+      desc: "Flutter is more awesome with RFlutter Alert.",
+      image: Image.asset("assets/success.png"),
+    ).show();
+  }
+// Alert custom content
+  _onAlertWithCustomContentPressed(context) {
+    Alert(
+        context: context,
+        title: "LOGIN",
+        content: Column(
+          children: <Widget>[
+            TextField(
+              decoration: InputDecoration(
+                icon: Icon(Icons.account_circle),
+                labelText: 'Username',
+              ),
+            ),
+            TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                icon: Icon(Icons.lock),
+                labelText: 'Password',
+              ),
+            ),
+          ],
+        ),
+        buttons: [
+          DialogButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(
+              "LOGIN",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+          )
+        ]).show();
   }
 }
 

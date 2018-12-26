@@ -1,17 +1,20 @@
 # RFlutter Alert
 RFlutter Alert is super customizable and easy-to-use alert/popup dialogs for Flutter. You may create reusable alert styles or add buttons as much as you want with ease.
 
-[![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)](https://pub.dartlang.org/packages/rflutter_alert)
+[![Version](https://img.shields.io/badge/version-1.0.2-blue.svg)](https://pub.dartlang.org/packages/rflutter_alert)
 
 <p>
-<img src="https://github.com/ozibrahim/files/raw/master/rflutter_alert.gif"> 
+<img src="https://github.com/ozibrahim/files/raw/master/rflutter_alert_V1.0.2.gif"> 
 </p>
 
 <p>
-<img src="https://ratel.com.tr/hub/rflutter_alert_success.png" width="200">
-<img src="https://ratel.com.tr/hub/rflutter_alert_error.png"  width="200">
-<img src="https://ratel.com.tr/hub/rflutter_alert_warning.png"  width="200">
-<img src="https://ratel.com.tr/hub/rflutter_alert_info.png"  width="200">
+<img src="https://github.com/ozibrahim/files/raw/master/rflutter_alert_V1.0.2.png" width="200">
+<img src="https://github.com/ozibrahim/files/raw/master/rflutter_alert_basic_V1.0.2.png"  width="200">
+<img src="https://github.com/ozibrahim/files/raw/master/rflutter_alert_buttons_V1.0.2.png"  width="200">
+<img src="https://github.com/ozibrahim/files/raw/master/rflutter_alert_custom_V1.0.2.png"  width="200">
+<img src="https://github.com/ozibrahim/files/raw/master/rflutter_alert_error_V1.0.2.png"  width="200">
+<img src="https://github.com/ozibrahim/files/raw/master/rflutter_alert_icon_V1.0.2.png"  width="200">
+<img src="https://github.com/ozibrahim/files/raw/master/rflutter_alert_style_V1.0.2.png"  width="200">
 </p>
 
 ## Features
@@ -32,7 +35,7 @@ RFlutter Alert is super customizable and easy-to-use alert/popup dialogs for Flu
 You must add the library as a dependency to your project.
 ```yaml
 dependencies:
- rflutter_alert: ^1.0.1
+ rflutter_alert: ^1.0.2
 ```
 
 You can also reference the git repo directly if you want:
@@ -157,6 +160,53 @@ And assing your `AlertStyle` object to Alert's `style` field.
       ],
     ).show();
 ```
+
+## Alert with Custom Image
+
+```dart
+    Alert(
+      context: context,
+      title: "RFLUTTER ALERT",
+      desc: "Flutter is better with RFlutter Alert.",
+      image: Image.asset("assets/success.png"),
+    ).show();
+```
+
+## Alert with Custom Content
+
+```dart
+    Alert(
+        context: context,
+        title: "LOGIN",
+        content: Column(
+          children: <Widget>[
+            TextField(
+              decoration: InputDecoration(
+                icon: Icon(Icons.account_circle),
+                labelText: 'Username',
+              ),
+            ),
+            TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                icon: Icon(Icons.lock),
+                labelText: 'Password',
+              ),
+            ),
+          ],
+        ),
+        buttons: [
+          DialogButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(
+              "LOGIN",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+          )
+        ]).show();
+```
+
+
 ## Contributions
 * If you **found a bug**, open an issue.
 * If you **have a feature request**, open an issue.
