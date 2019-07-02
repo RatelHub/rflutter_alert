@@ -16,10 +16,12 @@ class AlertStyle {
   final ShapeBorder alertBorder;
   final bool isCloseButton;
   final bool isOverlayTapDismiss;
+  final Color backgroundColor;
   final Color overlayColor;
   final TextStyle titleStyle;
   final TextStyle descStyle;
   final EdgeInsets buttonAreaPadding;
+  final BoxConstraints constraints ;
 
   /// Alert style constructor function
   /// The [animationType] parameter is used for transitions. Default: "fromBottom"
@@ -37,6 +39,7 @@ class AlertStyle {
     this.alertBorder,
     this.isCloseButton = true,
     this.isOverlayTapDismiss = true,
+    this.backgroundColor,
     this.overlayColor = Colors.black87,
     this.titleStyle = const TextStyle(
         color: Colors.black,
@@ -49,5 +52,6 @@ class AlertStyle {
         fontStyle: FontStyle.normal,
         fontSize: 18.0),
     this.buttonAreaPadding = const EdgeInsets.all(20.0),
+    this.constraints
   });
 }

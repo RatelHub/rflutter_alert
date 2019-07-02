@@ -134,6 +134,7 @@ class PopupDialog extends StatelessWidget {
       titleStyle: TextStyle(
         color: Colors.red,
       ),
+      constraints: BoxConstraints.expand(width: 300)
     );
 
     // Alert dialog using custom alert style
