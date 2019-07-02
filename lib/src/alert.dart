@@ -10,8 +10,8 @@ import 'package:flutter/material.dart';
 
 import 'alert_style.dart';
 import 'animation_transition.dart';
-import 'dialog_button.dart';
 import 'constants.dart';
+import 'dialog_button.dart';
 
 /// Main class to create alerts.
 ///
@@ -25,6 +25,7 @@ class Alert {
   final String desc;
   final Widget content;
   final List<DialogButton> buttons;
+  final Function closeFunction;
 
   /// Alert constructor
   ///
@@ -38,6 +39,7 @@ class Alert {
     this.desc,
     this.content,
     this.buttons,
+    this.closeFunction,
   });
 
   /// Displays defined alert window
@@ -151,7 +153,10 @@ class Alert {
                 child: Material(
                   color: Colors.transparent,
                   child: InkWell(
-                    onTap: () => Navigator.pop(context),
+                    onTap: () {
+                      Navigator.pop(context);
+                      closeFunction();
+                    },
                   ),
                 ),
               ),
