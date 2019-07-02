@@ -11,3 +11,11 @@
 	* Set overlay tap to dismiss
 	* Assign Title and desc styles
 	* Change dialog border style
+	
+
+
+## [1.0.3] - 02 July, 2019
+
+* Added close callback function
+* Added size constraint
+* Added SingleChildScrollView for keyboard bug
