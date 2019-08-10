@@ -14,6 +14,7 @@ class AlertStyle {
   final AnimationType animationType;
   final Duration animationDuration;
   final ShapeBorder alertBorder;
+  final bool isButtonVisible;
   final bool isCloseButton;
   final bool isOverlayTapDismiss;
   final Color backgroundColor;
@@ -27,6 +28,7 @@ class AlertStyle {
   /// The [animationType] parameter is used for transitions. Default: "fromBottom"
   /// The [animationDuration] parameter is used to set the animation transition time. Default: "200 ms"
   /// The [alertBorder] parameter sets border.
+  /// The [isButtonVisible] parameter sets the visibility of all buttons. Default: "true"
   /// The [isCloseButton] parameter sets visibility of the close button. Default: "true"
   /// The [isOverlayTapDismiss] parameter sets closing the alert by clicking outside. Default: "true"
   /// The [overlayColor] parameter sets the background color of the outside. Default: "Color(0xDD000000)"
@@ -37,6 +39,7 @@ class AlertStyle {
     this.animationType = AnimationType.fromBottom,
     this.animationDuration = const Duration(milliseconds: 200),
     this.alertBorder,
+    this.isButtonVisible = true,
     this.isCloseButton = true,
     this.isOverlayTapDismiss = true,
     this.backgroundColor,
