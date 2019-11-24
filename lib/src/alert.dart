@@ -50,10 +50,10 @@ class Alert {
           Animation<double> secondaryAnimation) {
         return _buildDialog();
       },
-      barrierDismissible: style.isOverlayTapDismiss,
+      barrierDismissible: style?.isOverlayTapDismiss ?? true,
       barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
-      barrierColor: style.overlayColor,
-      transitionDuration: style.animationDuration,
+      barrierColor: style?.overlayColor ?? const Color(0x80000000),
+      transitionDuration: style?.animationDuration ?? const Duration(milliseconds: 200),
       transitionBuilder: (
         BuildContext context,
         Animation<double> animation,
