@@ -12,12 +12,12 @@ enum AlertType { error, success, info, warning, none }
 
 /// Alert animation types
 enum AnimationType {
-  fromRight,
-  fromLeft,
-  fromTop,
-  fromBottom,
-  grow,
-  shrink
+    fromRight,
+    fromLeft,
+    fromTop,
+    fromBottom,
+    grow,
+    shrink
 }
 
 /// Library images path
