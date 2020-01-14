@@ -163,7 +163,9 @@ class Alert {
                   child: InkWell(
                     onTap: () {
                       Navigator.pop(context);
-                      closeFunction();
+                      if(closeFunction != null){
+                        closeFunction();
+                      }
                     },
                   ),
                 ),
