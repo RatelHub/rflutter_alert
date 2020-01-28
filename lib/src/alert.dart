@@ -68,7 +68,7 @@ class Alert {
 
     // Will be added in next version.
     Future<void> dismiss() async {
-        Navigator.pop(context);
+        Navigator.of(context, rootNavigator: true).pop();
     }
 
     // Alert dialog content widget
