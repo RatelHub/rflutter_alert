@@ -66,10 +66,10 @@ class Alert {
         );
     }
 
-// Will be added in next version.
-    // void dismiss() {
-    //   Navigator.pop(context);
-    // }
+    // Will be added in next version.
+    Future<void> dismiss() async {
+        Navigator.pop(context);
+    }
 
     // Alert dialog content widget
     Widget _buildDialog() {
