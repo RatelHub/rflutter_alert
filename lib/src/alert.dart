@@ -27,6 +27,7 @@ class Alert {
     final String desc;
     final Widget content;
     final List<DialogButton> buttons;
+    final ButtonsContainer buttonsContainer;
     final Function closeFunction;
 
     /// Alert constructor
@@ -41,6 +42,7 @@ class Alert {
         this.desc,
         this.content,
         this.buttons,
+        this.buttonsContainer = ButtonsContainer.row,
         this.closeFunction,
     });
 
@@ -57,6 +59,7 @@ class Alert {
                 .of(context)
                 .modalBarrierDismissLabel,
             barrierColor: style.overlayColor,
+            useRootNavigator: true,
             transitionDuration: style.animationDuration,
             transitionBuilder: (BuildContext context,
                 Animation<double> animation,
@@ -83,7 +86,7 @@ class Alert {
                                 .of(context)
                                 .dialogBackgroundColor,
                             shape: style.alertBorder ?? _defaultShape(),
-                            titlePadding: EdgeInsets.all(0.0),
+                            titlePadding: const EdgeInsets.all(0.0),
                             title: Container(
                                 child: Center(
                                     child: Column(
@@ -92,7 +95,7 @@ class Alert {
                                             _getCloseButton(),
                                             Padding(
                                                 padding: EdgeInsets.fromLTRB(
-                                                    20, (style.isCloseButton ? 0 : 20), 20, 0),
+                                                    20, (style.isCloseButton ? 0 : 10), 20, 0),
                                                 child: Column(
                                                     children: <Widget>[
                                                         _getImage(),
@@ -123,10 +126,18 @@ class Alert {
                                 ),
                             ),
                             contentPadding: style.buttonAreaPadding,
-                            content: Row(
+                            content: buttonsContainer == ButtonsContainer.row ? Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: _getButtons(),
-                            ),
+                            ) : Container(
+                                alignment: Alignment.center,
+                                height: 150,
+                                child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: _getButtons(),
+                                ),
+                            )
                         ),
                     ),
                 ),
@@ -146,9 +157,11 @@ class Alert {
                 if (button.width != null && buttons.length == 1) {
                     expandedButtons.add(buttonWidget);
                 } else {
-                    expandedButtons.add(Expanded(
-                        child: buttonWidget,
-                    ));
+                    expandedButtons.add(
+                        Expanded(
+                            child: buttonWidget,
+                        )
+                    );
                 }
             });
         }

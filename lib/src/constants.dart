@@ -20,5 +20,8 @@ enum AnimationType {
     shrink
 }
 
+/// Buttons container
+enum ButtonsContainer { row, column }
+
 /// Library images path
 const String kImagePath = "assets/images";

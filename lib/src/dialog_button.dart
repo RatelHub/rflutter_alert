@@ -21,6 +21,7 @@ class DialogButton extends StatelessWidget {
     final Function onPressed;
     final BoxBorder border;
     final EdgeInsets padding;
+    final EdgeInsets margin;
 
     /// DialogButton constructor
     DialogButton({
@@ -33,6 +34,7 @@ class DialogButton extends StatelessWidget {
         this.radius,
         this.border,
         this.padding = const EdgeInsets.only(left: 6, right: 6),
+        this.margin = const EdgeInsets.all(6),
         @required this.onPressed,
     }) : super(key: key);
 
@@ -41,6 +43,7 @@ class DialogButton extends StatelessWidget {
     Widget build(BuildContext context) {
         return Container(
             padding: padding,
+            margin: margin,
             width: width,
             height: height,
             decoration: BoxDecoration(
