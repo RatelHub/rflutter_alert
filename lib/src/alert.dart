@@ -17,6 +17,7 @@ import 'dialog_button.dart';
 ///
 /// You must call the "show()" method to view the alert class you have defined.
 class Alert {
+  final String id;
   final BuildContext context;
   final AlertType type;
   final AlertStyle style;
@@ -32,6 +33,7 @@ class Alert {
   /// [context], [title] are required.
   Alert({
     @required this.context,
+    this.id,
     this.type,
     this.style = const AlertStyle(),
     this.image,
@@ -73,11 +75,15 @@ class Alert {
   Widget _buildDialog() {
     return Center(
       child: ConstrainedBox(
-        constraints: style.constraints ?? BoxConstraints.expand(width: double.infinity, height: double.infinity),
+        constraints: style.constraints ??
+            BoxConstraints.expand(
+                width: double.infinity, height: double.infinity),
         child: Center(
           child: SingleChildScrollView(
             child: AlertDialog(
-              backgroundColor: style.backgroundColor ?? Theme.of(context).dialogBackgroundColor,
+              key: Key(id),
+              backgroundColor: style.backgroundColor ??
+                  Theme.of(context).dialogBackgroundColor,
               shape: style.alertBorder ?? _defaultShape(),
               titlePadding: EdgeInsets.all(0.0),
               title: Container(
