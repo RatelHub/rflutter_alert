@@ -26,6 +26,7 @@ class Alert {
   final Widget content;
   final List<DialogButton> buttons;
   final Function closeFunction;
+  final Icon closeIcon;
 
   /// Alert constructor
   ///
@@ -40,6 +41,7 @@ class Alert {
     this.content,
     this.buttons,
     this.closeFunction,
+    this.closeIcon,
   });
 
   /// Displays defined alert window
@@ -147,7 +149,16 @@ class Alert {
             padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
             child: Container(
               alignment: FractionalOffset.topRight,
+              child:
+              GestureDetector(
+              onTap: (){ Navigator.pop(context);
+                closeFunction();},
               child: Container(
+              alignment: FractionalOffset.topRight,
+
+              child: this.closeIcon != null ?
+              Container(child: this.closeIcon)
+                  : Container(
                 width: 20,
                 height: 20,
                 decoration: BoxDecoration(
@@ -158,16 +169,8 @@ class Alert {
                     ),
                   ),
                 ),
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                      closeFunction();
-                    },
-                  ),
-                ),
               ),
+            ),
             ),
           )
         : Container();
