@@ -147,10 +147,8 @@ class Alert {
     return style.isCloseButton
         ? Padding(
             padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
-            child: Container(
-              alignment: FractionalOffset.topRight,
-              child:
-              GestureDetector(
+            child:
+            GestureDetector(
               onTap: (){ Navigator.pop(context);
                 closeFunction();},
               child: Container(
@@ -165,7 +163,6 @@ class Alert {
                   image: DecorationImage(
                     image: AssetImage(
                       '$kImagePath/close.png',
-                      package: 'rflutter_alert',
                     ),
                   ),
                 ),
