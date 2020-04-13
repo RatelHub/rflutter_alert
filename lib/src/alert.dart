@@ -163,6 +163,7 @@ class Alert {
                   image: DecorationImage(
                     image: AssetImage(
                       '$kImagePath/close.png',
+                      package: 'rflutter_alert',
                     ),
                   ),
                 ),
