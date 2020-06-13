@@ -77,9 +77,7 @@ Alert(context: context, title: "RFLUTTER", desc: "Flutter is awesome.").show();
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
           onPressed: () {
-	       setState(() {
                      Navigator.of(context, rootNavigator: true).pop();
-                });
 	  }
           width: 120,
         )
@@ -103,9 +101,7 @@ Alert(context: context, title: "RFLUTTER", desc: "Flutter is awesome.").show();
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
             onPressed: () {
-	       setState(() {
                      Navigator.of(context, rootNavigator: true).pop();
-                });
 	  }
           color: Color.fromRGBO(0, 179, 134, 1.0),
         ),
@@ -115,9 +111,7 @@ Alert(context: context, title: "RFLUTTER", desc: "Flutter is awesome.").show();
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
             onPressed: () {
-	       setState(() {
                      Navigator.of(context, rootNavigator: true).pop();
-                });
 	  }
           gradient: LinearGradient(colors: [
             Color.fromRGBO(116, 116, 191, 1.0),
@@ -166,9 +160,7 @@ And assing your `AlertStyle` object to Alert's `style` field.
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
            onPressed: () {
-	       setState(() {
                      Navigator.of(context, rootNavigator: true).pop();
-                });
           color: Color.fromRGBO(0, 179, 134, 1.0),
           radius: BorderRadius.circular(0.0),
         ),
@@ -213,9 +205,7 @@ And assing your `AlertStyle` object to Alert's `style` field.
         buttons: [
           DialogButton(
              onPressed: () {
-	       setState(() {
                      Navigator.of(context, rootNavigator: true).pop();
-                });
             child: Text(
               "LOGIN",
               style: TextStyle(color: Colors.white, fontSize: 20),
