@@ -26,6 +26,7 @@ class Alert {
   final Widget content;
   final List<DialogButton> buttons;
   final Function closeFunction;
+  final bool onWillPopActive;
 
   /// Alert constructor
   ///
@@ -40,6 +41,7 @@ class Alert {
     this.content,
     this.buttons,
     this.closeFunction,
+    this.onWillPopActive = false,
   });
 
   /// Displays defined alert window
@@ -71,7 +73,7 @@ class Alert {
 
   // Alert dialog content widget
   Widget _buildDialog() {
-    return Center(
+    final Widget _child = Center(
       child: ConstrainedBox(
         constraints: style.constraints ?? BoxConstraints.expand(width: double.infinity, height: double.infinity),
         child: Center(
@@ -128,6 +130,9 @@ class Alert {
         ),
       ),
     );
+    return onWillPopActive
+        ? WillPopScope(onWillPop: () async => false, child: _child)
+        : _child;
   }
 
   // Returns alert default border style
