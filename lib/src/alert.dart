@@ -84,66 +84,64 @@ class Alert {
             child: ConstrainedBox(
                 constraints: style.constraints ?? BoxConstraints.expand(width: double.infinity, height: double.infinity),
                 child: Center(
-                    child: SingleChildScrollView(
-                        child: AlertDialog(
-                            key: Key(id),
-                            backgroundColor: style.backgroundColor ?? Theme
-                                .of(context)
-                                .dialogBackgroundColor,
-                            shape: style.alertBorder ?? _defaultShape(),
-                            titlePadding: const EdgeInsets.all(0.0),
-                            title: Container(
-                                child: Center(
-                                    child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: <Widget>[
-                                            _getCloseButton(),
-                                            Padding(
-                                                padding: EdgeInsets.fromLTRB(
-                                                    20, (style.isCloseButton ? 0 : 10), 20, 0),
-                                                child: Column(
-                                                    children: <Widget>[
-                                                        _getImage(),
-                                                        SizedBox(
-                                                            height: 15,
-                                                        ),
-                                                        Text(
-                                                            title,
-                                                            style: style.titleStyle,
-                                                            textAlign: style.titleTextAlign,
-                                                        ),
-                                                        SizedBox(
-                                                            height: desc == null ? 5 : 10,
-                                                        ),
-                                                        desc == null
-                                                            ? Container()
-                                                            : Text(
-                                                            desc,
-                                                            style: style.descStyle,
-                                                            textAlign: style.descTextAlign,
-                                                        ),
-                                                        content == null ? Container() : content,
-                                                    ],
-                                                ),
-                                            )
-                                        ],
-                                    ),
+                    child: AlertDialog(
+                        key: Key(id),
+                        backgroundColor: style.backgroundColor ?? Theme
+                            .of(context)
+                            .dialogBackgroundColor,
+                        shape: style.alertBorder ?? _defaultShape(),
+                        titlePadding: const EdgeInsets.all(0.0),
+                        title: Container(
+                            child: Center(
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                        _getCloseButton(),
+                                        Padding(
+                                            padding: EdgeInsets.fromLTRB(
+                                                20, (style.isCloseButton ? 0 : 10), 20, 0),
+                                            child: Column(
+                                                children: <Widget>[
+                                                    _getImage(),
+                                                    SizedBox(
+                                                        height: 15,
+                                                    ),
+                                                    Text(
+                                                        title,
+                                                        style: style.titleStyle,
+                                                        textAlign: style.titleTextAlign,
+                                                    ),
+                                                    SizedBox(
+                                                        height: desc == null ? 5 : 10,
+                                                    ),
+                                                    desc == null
+                                                        ? Container()
+                                                        : Text(
+                                                        desc,
+                                                        style: style.descStyle,
+                                                        textAlign: style.descTextAlign,
+                                                    ),
+                                                    content == null ? Container() : content,
+                                                ],
+                                            ),
+                                        )
+                                    ],
                                 ),
                             ),
-                            contentPadding: style.buttonAreaPadding,
-                            content: buttonsContainer == ButtonsContainer.row ? Row(
+                        ),
+                        contentPadding: style.buttonAreaPadding,
+                        content: buttonsContainer == ButtonsContainer.row ? Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: _getButtons(),
+                        ) : Container(
+                            alignment: Alignment.center,
+                            height: 150,
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: _getButtons(),
-                            ) : Container(
-                                alignment: Alignment.center,
-                                height: 150,
-                                child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: _getButtons(),
-                                ),
-                            )
-                        ),
+                            ),
+                        )
                     ),
                 ),
             ),
