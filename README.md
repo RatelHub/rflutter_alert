@@ -1,4 +1,7 @@
 # RFlutter Alert
+
+Fork from [RatelHub/rflutter_alert(https://github.com/RatelHub/rflutter_alert)]
+
 RFlutter Alert is super customizable and easy-to-use alert/popup dialogs for Flutter. You may create reusable alert styles or add buttons as much as you want with ease.
 
 [![Version](https://img.shields.io/badge/version-1.0.3-blue.svg)](https://pub.dartlang.org/packages/rflutter_alert)
@@ -42,7 +45,7 @@ You can also reference the git repo directly if you want:
 ```yaml
 dependencies:
  rflutter_alert:
-   git: git://github.com/RatelHub/rflutter_alert.git
+   git: git://github.com/NassB/rflutter_alert.git
 ```
 
 
@@ -127,6 +130,7 @@ Use the `AlertStyle` class to customize.
       isCloseButton: false,
       isOverlayTapDismiss: false,
       descStyle: TextStyle(fontWeight: FontWeight.bold),
+      descTextAlign: TextAlign.start,
       animationDuration: Duration(milliseconds: 400),
       alertBorder: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(0.0),
