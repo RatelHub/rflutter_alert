@@ -19,3 +19,22 @@
 * Added close callback function
 * Added size constraint
 * Added SingleChildScrollView for keyboard bug
+
+
+
+## [1.0.4] - 09 September, 2020
+
+* Added hide buttons option
+* More parameters for title styling ext.
+* User can change the close button icon now.
+* Migrated to Android X
+* Fixed
+    * Bottom shadow clipping
+    * Example project
+    * Null method call
+    
+    
+    
+## [1.0.5] - 09 September, 2020
+
+* Code formatted and version info fixed.

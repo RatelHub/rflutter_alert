@@ -33,7 +33,6 @@ class Alert {
   final Icon closeIcon;
   final bool onWillPopActive;
 
-
   /// Alert constructor
   ///
   /// [context], [title] are required.
@@ -62,16 +61,16 @@ class Alert {
         return _buildDialog();
       },
       barrierDismissible: style.isOverlayTapDismiss,
-      barrierLabel: MaterialLocalizations
-          .of(context)
-          .modalBarrierDismissLabel,
+      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
       barrierColor: style.overlayColor,
       useRootNavigator: true,
       transitionDuration: style.animationDuration,
-      transitionBuilder: (BuildContext context,
-          Animation<double> animation,
-          Animation<double> secondaryAnimation,
-          Widget child,) =>
+      transitionBuilder: (
+        BuildContext context,
+        Animation<double> animation,
+        Animation<double> secondaryAnimation,
+        Widget child,
+      ) =>
           _showAnimation(animation, secondaryAnimation, child),
     );
   }
@@ -85,14 +84,14 @@ class Alert {
   Widget _buildDialog() {
     final Widget _child = Center(
       child: ConstrainedBox(
-        constraints: style.constraints ?? BoxConstraints.expand(
-            width: double.infinity, height: double.infinity),
+        constraints: style.constraints ??
+            BoxConstraints.expand(
+                width: double.infinity, height: double.infinity),
         child: Center(
           child: AlertDialog(
               key: Key(id),
-              backgroundColor: style.backgroundColor ?? Theme
-                  .of(context)
-                  .dialogBackgroundColor,
+              backgroundColor: style.backgroundColor ??
+                  Theme.of(context).dialogBackgroundColor,
               shape: style.alertBorder ?? _defaultShape(),
               titlePadding: const EdgeInsets.all(0.0),
               title: Container(
@@ -121,10 +120,10 @@ class Alert {
                             desc == null
                                 ? Container()
                                 : Text(
-                              desc,
-                              style: style.descStyle,
-                              textAlign: style.descTextAlign,
-                            ),
+                                    desc,
+                                    style: style.descStyle,
+                                    textAlign: style.descTextAlign,
+                                  ),
                             content == null ? Container() : content,
                           ],
                         ),
@@ -134,63 +133,59 @@ class Alert {
                 ),
               ),
               contentPadding: style.buttonAreaPadding,
-              content: buttonsContainer == ButtonsContainer.row ? Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: _getButtons(),
-              ) : Container(
-                alignment: Alignment.center,
-                height: 150,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: _getButtons(),
-                ),
-              )
-          ),
+              content: buttonsContainer == ButtonsContainer.row
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: _getButtons(),
+                    )
+                  : Container(
+                      alignment: Alignment.center,
+                      height: 150,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: _getButtons(),
+                      ),
+                    )),
         ),
       ),
     );
     return onWillPopActive
-    ? WillPopScope(onWillPop: () async => false, child: _child
-    )
-    :
-    _child;
+        ? WillPopScope(onWillPop: () async => false, child: _child)
+        : _child;
   }
-
 
 // Returns the close button on the top right
   Widget _getCloseButton() {
     return style.isCloseButton
         ? Padding(
-      padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
-      child:
-      GestureDetector(
-        onTap: () {
-          Navigator.pop(context);
-          if (closeFunction != null) {
-            closeFunction();
-          }
-        },
-        child: Container(
-          alignment: FractionalOffset.topRight,
-
-          child: this.closeIcon != null ?
-          Container(child: this.closeIcon)
-              : Container(
-            width: 20,
-            height: 20,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                  '$kImagePath/close.png',
-                  package: 'rflutter_alert',
-                ),
+            padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+                if (closeFunction != null) {
+                  closeFunction();
+                }
+              },
+              child: Container(
+                alignment: FractionalOffset.topRight,
+                child: this.closeIcon != null
+                    ? Container(child: this.closeIcon)
+                    : Container(
+                        width: 20,
+                        height: 20,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(
+                              '$kImagePath/close.png',
+                              package: 'rflutter_alert',
+                            ),
+                          ),
+                        ),
+                      ),
               ),
             ),
-          ),
-        ),
-      ),
-    )
+          )
         : Container();
   }
 
@@ -200,7 +195,7 @@ class Alert {
     if (style.isButtonVisible) {
       if (buttons != null) {
         buttons.forEach(
-              (button) {
+          (button) {
             var buttonWidget = Padding(
               padding: const EdgeInsets.only(left: 2, right: 2),
               child: button,
@@ -220,8 +215,7 @@ class Alert {
             child: DialogButton(
               child: Text(
                 "CANCEL",
-                style: TextStyle(
-                    color: Colors.white, fontSize: 20),
+                style: TextStyle(color: Colors.white, fontSize: 20),
               ),
               onPressed: () => Navigator.pop(context),
             ),
