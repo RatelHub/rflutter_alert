@@ -15,6 +15,7 @@ class AlertStyle {
     final AnimationType animationType;
     final Duration animationDuration;
     final ShapeBorder alertBorder;
+    final bool isButtonVisible;
     final bool isCloseButton;
     final bool isOverlayTapDismiss;
     final Color backgroundColor;
@@ -43,6 +44,7 @@ class AlertStyle {
         this.animationType = AnimationType.fromBottom,
         this.animationDuration = const Duration(milliseconds: 200),
         this.alertBorder,
+        this.isButtonVisible = true,
         this.isCloseButton = true,
         this.isOverlayTapDismiss = true,
         this.backgroundColor,
