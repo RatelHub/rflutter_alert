@@ -71,60 +71,57 @@ class Alert {
 
   // Alert dialog content widget
   Widget _buildDialog() {
-    return Center(
-      child: ConstrainedBox(
-        constraints: style.constraints ?? BoxConstraints.expand(width: double.infinity, height: double.infinity),
-        child: Center(
-          child: SingleChildScrollView(
-            child: AlertDialog(
-              backgroundColor: style.backgroundColor ?? Theme.of(context).dialogBackgroundColor,
-              shape: style.alertBorder ?? _defaultShape(),
-              titlePadding: EdgeInsets.all(0.0),
-              title: Container(
-                child: Center(
+    return ConstrainedBox(
+      constraints: style.constraints ??
+          BoxConstraints.expand(
+              width: double.infinity, height: double.infinity),
+      child: AlertDialog(
+        backgroundColor:
+            style.backgroundColor ?? Theme.of(context).dialogBackgroundColor,
+        shape: style.alertBorder ?? _defaultShape(),
+        titlePadding: EdgeInsets.all(0.0),
+        title: Container(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                _getCloseButton(),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                      20, (style.isCloseButton ? 0 : 20), 20, 0),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      _getCloseButton(),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(
-                            20, (style.isCloseButton ? 0 : 20), 20, 0),
-                        child: Column(
-                          children: <Widget>[
-                            _getImage(),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              title,
-                              style: style.titleStyle,
+                      _getImage(),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text(
+                        title,
+                        style: style.titleStyle,
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(
+                        height: desc == null ? 5 : 10,
+                      ),
+                      desc == null
+                          ? Container()
+                          : Text(
+                              desc,
+                              style: style.descStyle,
                               textAlign: TextAlign.center,
                             ),
-                            SizedBox(
-                              height: desc == null ? 5 : 10,
-                            ),
-                            desc == null
-                                ? Container()
-                                : Text(
-                                    desc,
-                                    style: style.descStyle,
-                                    textAlign: TextAlign.center,
-                                  ),
-                            content == null ? Container() : content,
-                          ],
-                        ),
-                      )
+                      content == null ? Container() : content,
                     ],
                   ),
-                ),
-              ),
-              contentPadding: style.buttonAreaPadding,
-              content: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: _getButtons(),
-              ),
+                )
+              ],
             ),
           ),
+        ),
+        contentPadding: style.buttonAreaPadding,
+        content: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: _getButtons(),
         ),
       ),
     );
@@ -176,34 +173,36 @@ class Alert {
   // Returns defined buttons. Default: Cancel Button
   List<Widget> _getButtons() {
     List<Widget> expandedButtons = [];
-    if (buttons != null) {
-      buttons.forEach(
-        (button) {
-          var buttonWidget = Padding(
-            padding: const EdgeInsets.only(left: 2, right: 2),
-            child: button,
-          );
-          if (button.width != null && buttons.length == 1) {
-            expandedButtons.add(buttonWidget);
-          } else {
-            expandedButtons.add(Expanded(
-              child: buttonWidget,
-            ));
-          }
-        },
-      );
-    } else {
-      expandedButtons.add(
-        Expanded(
-          child: DialogButton(
-            child: Text(
-              "CANCEL",
-              style: TextStyle(color: Colors.white, fontSize: 20),
+    if (style.isButtonVisible) {
+      if (buttons != null) {
+        buttons.forEach(
+          (button) {
+            var buttonWidget = Padding(
+              padding: const EdgeInsets.only(left: 2, right: 2),
+              child: button,
+            );
+            if (button.width != null && buttons.length == 1) {
+              expandedButtons.add(buttonWidget);
+            } else {
+              expandedButtons.add(Expanded(
+                child: buttonWidget,
+              ));
+            }
+          },
+        );
+      } else {
+        expandedButtons.add(
+          Expanded(
+            child: DialogButton(
+              child: Text(
+                "CANCEL",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onPressed: () => Navigator.pop(context),
             ),
-            onPressed: () => Navigator.pop(context),
           ),
-        ),
-      );
+        );
+      }
     }
 
     return expandedButtons;
