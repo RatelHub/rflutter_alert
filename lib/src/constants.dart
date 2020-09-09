@@ -12,13 +12,16 @@ enum AlertType { error, success, info, warning, none }
 
 /// Alert animation types
 enum AnimationType {
-  fromRight,
-  fromLeft,
-  fromTop,
-  fromBottom,
-  grow,
-  shrink
+    fromRight,
+    fromLeft,
+    fromTop,
+    fromBottom,
+    grow,
+    shrink
 }
+
+/// Buttons container
+enum ButtonsContainer { row, column }
 
 /// Library images path
 const String kImagePath = "assets/images";
