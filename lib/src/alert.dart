@@ -30,6 +30,7 @@ class Alert {
     final List<DialogButton> buttons;
     final ButtonsContainer buttonsContainer;
     final Function closeFunction;
+    final Icon closeIcon;
 
     /// Alert constructor
     ///
@@ -46,6 +47,7 @@ class Alert {
         this.buttons,
         this.buttonsContainer = ButtonsContainer.row,
         this.closeFunction,
+        this.closeIcon,
     });
 
     /// Displays defined alert window
@@ -148,6 +150,42 @@ class Alert {
         );
     }
 
+// Returns the close button on the top right
+  Widget _getCloseButton() {
+    return style.isCloseButton
+        ? Padding(
+            padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
+            child:
+            GestureDetector(
+              onTap: (){ 
+                Navigator.pop(context);
+                if(closeFunction != null){
+                  closeFunction();
+                }
+              },
+              child: Container(
+              alignment: FractionalOffset.topRight,
+
+              child: this.closeIcon != null ?
+              Container(child: this.closeIcon)
+                  : Container(
+                width: 20,
+                height: 20,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                      '$kImagePath/close.png',
+                      package: 'rflutter_alert',
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            ),
+          )
+        : Container();
+  }
+  
     // Returns defined buttons. Default: Cancel Button
     List<Widget> _getButtons() {
         List<Widget> expandedButtons = [];
@@ -193,39 +231,6 @@ class Alert {
                 color: Colors.blueGrey,
             ),
         );
-    }
-
-    // Returns the close button on the top right
-    Widget _getCloseButton() {
-        return style.isCloseButton ? Padding(
-            padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
-            child: Container(
-                alignment: FractionalOffset.topRight,
-                child: Container(
-                    width: 20,
-                    height: 20,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(
-                                '$kImagePath/close.png',
-                                package: 'rflutter_alert',
-                            ),
-                        ),
-                    ),
-                    child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                            onTap: () {
-                                Navigator.pop(context);
-                                if(closeFunction != null){
-                                  closeFunction();
-                                }
-                            },
-                        )
-                    )
-                )
-            )
-        ) : Container();
     }
 
     // Returns alert image for icon
