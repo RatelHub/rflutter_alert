@@ -45,7 +45,7 @@ You can also reference the git repo directly if you want:
 ```yaml
 dependencies:
  rflutter_alert:
-   git: git://github.com/NassB/rflutter_alert.git
+   git: git://github.com/RatelHub/rflutter_alert.git
 ```
 
 
@@ -220,7 +220,5 @@ And assing your `AlertStyle` object to Alert's `style` field.
 See CHANGELOG for all breaking (and non-breaking) changes.
 
 <hr/>
-Main Contributor <a href="https://tr.linkedin.com/in/paltimoz">İzzet Öztürk</a>
-<p>
 Made with ❤ by <a href="https://ratel.com.tr">Ratel</a>
 </p>

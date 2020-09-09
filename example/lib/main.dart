@@ -96,7 +96,7 @@ class PopupDialog extends StatelessWidget {
         DialogButton(
           child: Text(
             "FLAT",
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            style: TextStyle(color: Colors.white, fontSize: 18),
           ),
           onPressed: () => Navigator.pop(context),
           color: Color.fromRGBO(0, 179, 134, 1.0),
@@ -104,7 +104,7 @@ class PopupDialog extends StatelessWidget {
         DialogButton(
           child: Text(
             "GRADIENT",
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            style: TextStyle(color: Colors.white, fontSize: 18),
           ),
           onPressed: () => Navigator.pop(context),
           gradient: LinearGradient(colors: [
@@ -120,22 +120,21 @@ class PopupDialog extends StatelessWidget {
   _onAlertWithStylePressed(context) {
     // Reusable alert style
     var alertStyle = AlertStyle(
-      animationType: AnimationType.fromTop,
-      isCloseButton: false,
-      isOverlayTapDismiss: false,
-      descStyle: TextStyle(fontWeight: FontWeight.bold),
-      animationDuration: Duration(milliseconds: 400),
-      alertBorder: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(0.0),
-        side: BorderSide(
-          color: Colors.grey,
+        animationType: AnimationType.fromTop,
+        isCloseButton: false,
+        isOverlayTapDismiss: false,
+        descStyle: TextStyle(fontWeight: FontWeight.bold),
+        animationDuration: Duration(milliseconds: 400),
+        alertBorder: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(0.0),
+          side: BorderSide(
+            color: Colors.grey,
+          ),
         ),
-      ),
-      titleStyle: TextStyle(
-        color: Colors.red,
-      ),
-      constraints: BoxConstraints.expand(width: 300)
-    );
+        titleStyle: TextStyle(
+          color: Colors.red,
+        ),
+        constraints: BoxConstraints.expand(width: 300));
 
     // Alert dialog using custom alert style
     Alert(
@@ -167,6 +166,7 @@ class PopupDialog extends StatelessWidget {
       image: Image.asset("assets/success.png"),
     ).show();
   }
+
 // Alert custom content
   _onAlertWithCustomContentPressed(context) {
     Alert(

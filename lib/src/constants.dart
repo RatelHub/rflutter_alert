@@ -11,14 +11,7 @@
 enum AlertType { error, success, info, warning, none }
 
 /// Alert animation types
-enum AnimationType {
-    fromRight,
-    fromLeft,
-    fromTop,
-    fromBottom,
-    grow,
-    shrink
-}
+enum AnimationType { fromRight, fromLeft, fromTop, fromBottom, grow, shrink }
 
 /// Buttons container
 enum ButtonsContainer { row, column }
