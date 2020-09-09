@@ -31,6 +31,8 @@ class Alert {
     final ButtonsContainer buttonsContainer;
     final Function closeFunction;
     final Icon closeIcon;
+    final bool onWillPopActive;
+
 
     /// Alert constructor
     ///
@@ -48,6 +50,7 @@ class Alert {
         this.buttonsContainer = ButtonsContainer.row,
         this.closeFunction,
         this.closeIcon,
+        this.onWillPopActive = false,
     });
 
     /// Displays defined alert window
@@ -80,7 +83,7 @@ class Alert {
 
     // Alert dialog content widget
     Widget _buildDialog() {
-        return Center(
+        final Widget _child = Center(
             child: ConstrainedBox(
                 constraints: style.constraints ?? BoxConstraints.expand(width: double.infinity, height: double.infinity),
                 child: Center(
@@ -145,8 +148,15 @@ class Alert {
                     ),
                 ),
             ),
-        );
-    }
+          ),
+        ),
+      ),
+    );
+    return onWillPopActive
+        ? WillPopScope(onWillPop: () async => false, child: _child)
+        : _child;
+  }
+
 
 // Returns the close button on the top right
   Widget _getCloseButton() {
