@@ -33,14 +33,14 @@ class Alert {
   Alert({
     @required this.context,
     this.type,
-    this.style = const AlertStyle(),
+    style,
     this.image,
     @required this.title,
     this.desc,
     this.content,
     this.buttons,
     this.closeFunction,
-  });
+  }): style=style ?? const AlertStyle();
 
   /// Displays defined alert window
   Future<bool> show() async {
