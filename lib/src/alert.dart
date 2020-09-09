@@ -6,6 +6,8 @@
  * Copyright (c) 2018 Ratel, LLC. All rights reserved.
  * See LICENSE for distribution and usage details.
  */
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'alert_style.dart';
@@ -17,255 +19,272 @@ import 'dialog_button.dart';
 ///
 /// You must call the "show()" method to view the alert class you have defined.
 class Alert {
-  final String id;
-  final BuildContext context;
-  final AlertType type;
-  final AlertStyle style;
-  final Image image;
-  final String title;
-  final String desc;
-  final Widget content;
-  final List<DialogButton> buttons;
-  final Function closeFunction;
+    final String id;
+    final BuildContext context;
+    final AlertType type;
+    final AlertStyle style;
+    final Image image;
+    final String title;
+    final String desc;
+    final Widget content;
+    final List<DialogButton> buttons;
+    final ButtonsContainer buttonsContainer;
+    final Function closeFunction;
 
-  /// Alert constructor
-  ///
-  /// [context], [title] are required.
-  Alert({
-    @required this.context,
-    this.id,
-    this.type,
-    this.style = const AlertStyle(),
-    this.image,
-    @required this.title,
-    this.desc,
-    this.content,
-    this.buttons,
-    this.closeFunction,
-  });
+    /// Alert constructor
+    ///
+    /// [context], [title] are required.
+    Alert({
+        @required this.context,
+        this.id,
+        this.type,
+        this.style = const AlertStyle(),
+        this.image,
+        @required this.title,
+        this.desc,
+        this.content,
+        this.buttons,
+        this.buttonsContainer = ButtonsContainer.row,
+        this.closeFunction,
+    });
 
-  /// Displays defined alert window
-  Future<bool> show() async {
-    return await showGeneralDialog(
-      context: context,
-      pageBuilder: (BuildContext buildContext, Animation<double> animation,
-          Animation<double> secondaryAnimation) {
-        return _buildDialog();
-      },
-      barrierDismissible: style.isOverlayTapDismiss,
-      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
-      barrierColor: style.overlayColor,
-      transitionDuration: style.animationDuration,
-      transitionBuilder: (
-        BuildContext context,
-        Animation<double> animation,
-        Animation<double> secondaryAnimation,
-        Widget child,
-      ) =>
-          _showAnimation(animation, secondaryAnimation, child),
-    );
-  }
+    /// Displays defined alert window
+    Future<bool> show() async {
+        return await showGeneralDialog(
+            context: context,
+            pageBuilder: (BuildContext buildContext, Animation<double> animation,
+                Animation<double> secondaryAnimation) {
+                return _buildDialog();
+            },
+            barrierDismissible: style.isOverlayTapDismiss,
+            barrierLabel: MaterialLocalizations
+                .of(context)
+                .modalBarrierDismissLabel,
+            barrierColor: style.overlayColor,
+            useRootNavigator: true,
+            transitionDuration: style.animationDuration,
+            transitionBuilder: (BuildContext context,
+                Animation<double> animation,
+                Animation<double> secondaryAnimation,
+                Widget child,) =>
+                _showAnimation(animation, secondaryAnimation, child),
+        );
+    }
 
-// Will be added in next version.
-  // void dismiss() {
-  //   Navigator.pop(context);
-  // }
+    // Will be added in next version.
+    Future<void> dismiss() async {
+        Navigator.of(context, rootNavigator: true).pop();
+    }
 
-  // Alert dialog content widget
-  Widget _buildDialog() {
-    return Center(
-      child: ConstrainedBox(
-        constraints: style.constraints ??
-            BoxConstraints.expand(
-                width: double.infinity, height: double.infinity),
-        child: Center(
-          child: SingleChildScrollView(
-            child: AlertDialog(
-              key: Key(id),
-              backgroundColor: style.backgroundColor ??
-                  Theme.of(context).dialogBackgroundColor,
-              shape: style.alertBorder ?? _defaultShape(),
-              titlePadding: EdgeInsets.all(0.0),
-              title: Container(
+    // Alert dialog content widget
+    Widget _buildDialog() {
+        return Center(
+            child: ConstrainedBox(
+                constraints: style.constraints ?? BoxConstraints.expand(width: double.infinity, height: double.infinity),
                 child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      _getCloseButton(),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(
-                            20, (style.isCloseButton ? 0 : 20), 20, 0),
-                        child: Column(
-                          children: <Widget>[
-                            _getImage(),
-                            SizedBox(
-                              height: 15,
+                    child: SingleChildScrollView(
+                        child: AlertDialog(
+                            key: Key(id),
+                            backgroundColor: style.backgroundColor ?? Theme
+                                .of(context)
+                                .dialogBackgroundColor,
+                            shape: style.alertBorder ?? _defaultShape(),
+                            titlePadding: const EdgeInsets.all(0.0),
+                            title: Container(
+                                child: Center(
+                                    child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: <Widget>[
+                                            _getCloseButton(),
+                                            Padding(
+                                                padding: EdgeInsets.fromLTRB(
+                                                    20, (style.isCloseButton ? 0 : 10), 20, 0),
+                                                child: Column(
+                                                    children: <Widget>[
+                                                        _getImage(),
+                                                        SizedBox(
+                                                            height: 15,
+                                                        ),
+                                                        Text(
+                                                            title,
+                                                            style: style.titleStyle,
+                                                            textAlign: style.titleTextAlign,
+                                                        ),
+                                                        SizedBox(
+                                                            height: desc == null ? 5 : 10,
+                                                        ),
+                                                        desc == null
+                                                            ? Container()
+                                                            : Text(
+                                                            desc,
+                                                            style: style.descStyle,
+                                                            textAlign: style.descTextAlign,
+                                                        ),
+                                                        content == null ? Container() : content,
+                                                    ],
+                                                ),
+                                            )
+                                        ],
+                                    ),
+                                ),
                             ),
-                            Text(
-                              title,
-                              style: style.titleStyle,
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(
-                              height: desc == null ? 5 : 10,
-                            ),
-                            desc == null
-                                ? Container()
-                                : Text(
-                                    desc,
-                                    style: style.descStyle,
-                                    textAlign: TextAlign.center,
-                                  ),
-                            content == null ? Container() : content,
-                          ],
+                            contentPadding: style.buttonAreaPadding,
+                            content: buttonsContainer == ButtonsContainer.row ? Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: _getButtons(),
+                            ) : Container(
+                                alignment: Alignment.center,
+                                height: 150,
+                                child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: _getButtons(),
+                                ),
+                            )
                         ),
-                      )
-                    ],
-                  ),
+                    ),
                 ),
-              ),
-              contentPadding: style.buttonAreaPadding,
-              content: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: _getButtons(),
-              ),
             ),
-          ),
-        ),
-      ),
-    );
-  }
+        );
+    }
 
-  // Returns alert default border style
-  ShapeBorder _defaultShape() {
-    return RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(10.0),
-      side: BorderSide(
-        color: Colors.blueGrey,
-      ),
-    );
-  }
+    // Returns defined buttons. Default: Cancel Button
+    List<Widget> _getButtons() {
+        List<Widget> expandedButtons = [];
+        if (style.isButtonVisible) {
+            if (buttons != null) {
+                buttons.forEach(
+                        (button) {
+                        var buttonWidget = Padding(
+                            padding: const EdgeInsets.only(left: 2, right: 2),
+                            child: button,
+                        );
+                        if (button.width != null && buttons.length == 1) {
+                            expandedButtons.add(buttonWidget);
+                        } else {
+                            expandedButtons.add(Expanded(
+                                child: buttonWidget,
+                            ));
+                        }
+                    },
+                );
+            } else {
+                expandedButtons.add(
+                    Expanded(
+                        child: DialogButton(
+                            child: Text(
+                                "CANCEL",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20),
+                            ),
+                            onPressed: () => Navigator.pop(context),
+                        ),
+                    ),
+                );
+            }
+        }
+    }
 
-// Returns the close button on the top right
-  Widget _getCloseButton() {
-    return style.isCloseButton
-        ? Padding(
+    // Returns alert default border style
+    ShapeBorder _defaultShape() {
+        return RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            side: BorderSide(
+                color: Colors.blueGrey,
+            ),
+        );
+    }
+
+    // Returns the close button on the top right
+    Widget _getCloseButton() {
+        return style.isCloseButton ? Padding(
             padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
             child: Container(
-              alignment: FractionalOffset.topRight,
-              child: Container(
-                width: 20,
-                height: 20,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                      '$kImagePath/close.png',
-                      package: 'rflutter_alert',
+                alignment: FractionalOffset.topRight,
+                child: Container(
+                    width: 20,
+                    height: 20,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(
+                                '$kImagePath/close.png',
+                                package: 'rflutter_alert',
+                            ),
+                        ),
                     ),
-                  ),
-                ),
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                      closeFunction();
-                    },
-                  ),
-                ),
-              ),
-            ),
-          )
-        : Container();
-  }
-
-  // Returns defined buttons. Default: Cancel Button
-  List<Widget> _getButtons() {
-    List<Widget> expandedButtons = [];
-    if (buttons != null) {
-      buttons.forEach(
-        (button) {
-          var buttonWidget = Padding(
-            padding: const EdgeInsets.only(left: 2, right: 2),
-            child: button,
-          );
-          if (button.width != null && buttons.length == 1) {
-            expandedButtons.add(buttonWidget);
-          } else {
-            expandedButtons.add(Expanded(
-              child: buttonWidget,
-            ));
-          }
-        },
-      );
-    } else {
-      expandedButtons.add(
-        Expanded(
-          child: DialogButton(
-            child: Text(
-              "CANCEL",
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-            onPressed: () => Navigator.pop(context),
-          ),
-        ),
-      );
+                    child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                            onTap: () {
+                                Navigator.pop(context);
+                                if(closeFunction != null){
+                                  closeFunction();
+                                }
+                            },
+                        )
+                    )
+                )
+            )
+        ) : Container();
     }
 
-    return expandedButtons;
-  }
-
-// Returns alert image for icon
-  Widget _getImage() {
-    Widget response = image ?? Container();
-    switch (type) {
-      case AlertType.success:
-        response = Image.asset(
-          '$kImagePath/icon_success.png',
-          package: 'rflutter_alert',
-        );
-        break;
-      case AlertType.error:
-        response = Image.asset(
-          '$kImagePath/icon_error.png',
-          package: 'rflutter_alert',
-        );
-        break;
-      case AlertType.info:
-        response = Image.asset(
-          '$kImagePath/icon_info.png',
-          package: 'rflutter_alert',
-        );
-        break;
-      case AlertType.warning:
-        response = Image.asset(
-          '$kImagePath/icon_warning.png',
-          package: 'rflutter_alert',
-        );
-        break;
-      case AlertType.none:
-        response = Container();
-        break;
+    // Returns alert image for icon
+    Widget _getImage() {
+        Widget response = image ?? Container();
+        switch (type) {
+            case AlertType.success:
+                response = Image.asset(
+                    '$kImagePath/icon_success.png',
+                    package: 'rflutter_alert',
+                );
+                break;
+            case AlertType.error:
+                response = Image.asset(
+                    '$kImagePath/icon_error.png',
+                    package: 'rflutter_alert',
+                );
+                break;
+            case AlertType.info:
+                response = Image.asset(
+                    '$kImagePath/icon_info.png',
+                    package: 'rflutter_alert',
+                );
+                break;
+            case AlertType.warning:
+                response = Image.asset(
+                    '$kImagePath/icon_warning.png',
+                    package: 'rflutter_alert',
+                );
+                break;
+            case AlertType.none:
+                response = Container();
+                break;
+        }
+        return response;
     }
-    return response;
-  }
 
-// Shows alert with selected animation
-  _showAnimation(animation, secondaryAnimation, child) {
-    if (style.animationType == AnimationType.fromRight) {
-      return AnimationTransition.fromRight(
-          animation, secondaryAnimation, child);
-    } else if (style.animationType == AnimationType.fromLeft) {
-      return AnimationTransition.fromLeft(animation, secondaryAnimation, child);
-    } else if (style.animationType == AnimationType.fromBottom) {
-      return AnimationTransition.fromBottom(
-          animation, secondaryAnimation, child);
-    } else if (style.animationType == AnimationType.grow) {
-      return AnimationTransition.grow(animation, secondaryAnimation, child);
-    } else if (style.animationType == AnimationType.shrink) {
-      return AnimationTransition.shrink(animation, secondaryAnimation, child);
-    } else {
-      return AnimationTransition.fromTop(animation, secondaryAnimation, child);
+    // Shows alert with selected animation
+    _showAnimation(animation, secondaryAnimation, child) {
+        switch (style.animationType) {
+            case AnimationType.fromRight:
+                return AnimationTransition.fromRight(animation, secondaryAnimation, child);
+                break;
+            case AnimationType.fromLeft:
+                return AnimationTransition.fromLeft(animation, secondaryAnimation, child);
+                break;
+            case AnimationType.fromBottom:
+                return AnimationTransition.fromBottom(
+                    animation, secondaryAnimation, child);
+                break;
+            case AnimationType.grow:
+                return AnimationTransition.grow(animation, secondaryAnimation, child);
+                break;
+            case AnimationType.shrink:
+                return AnimationTransition.shrink(animation, secondaryAnimation, child);
+                break;
+            case AnimationType.fromTop:
+                return AnimationTransition.fromTop(animation, secondaryAnimation, child);
+                break;
+        }
     }
-  }
 }
