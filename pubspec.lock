@@ -109,6 +109,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.0"
+    version: "2.4.0"
   quiver:
     dependency: transitive
     description:
@@ -162,7 +163,7 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.11"
+    version: "0.2.15"
   typed_data:
     dependency: transitive
     description:
