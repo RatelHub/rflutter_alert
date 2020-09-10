@@ -36,3 +36,9 @@
 ## [1.0.6] - 10 September, 2020
 * Custom Animation support
 * Fix for close icon
+
+## [1.0.7] - 10 September, 2020
+* Image paramater is not Image now, it is Widget!
+* When user provides closeFunction, user should close alert with dismiss()
+* Alert container elevation based on AlertStyle paramater now.
+* HighlightColor and SplashColor of button customization added for ripple effect.

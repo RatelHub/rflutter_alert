@@ -15,7 +15,6 @@ import 'animation_transition.dart';
 import 'constants.dart';
 import 'dialog_button.dart';
 
-
 /// Main class to create alerts.
 ///
 /// You must call the "show()" method to view the alert class you have defined.
@@ -24,7 +23,7 @@ class Alert {
   final BuildContext context;
   final AlertType type;
   final AlertStyle style;
-  final Image image;
+  final Widget image;
   final String title;
   final String desc;
   final Widget content;
@@ -56,25 +55,27 @@ class Alert {
   /// Displays defined alert window
   Future<bool> show() async {
     return await showGeneralDialog(
-      context: context,
-      pageBuilder: (BuildContext buildContext, Animation<double> animation,
-          Animation<double> secondaryAnimation) {
-        return _buildDialog();
-      },
-      barrierDismissible: style.isOverlayTapDismiss,
-      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
-      barrierColor: style.overlayColor,
-      useRootNavigator: true,
-      transitionDuration: style.animationDuration,
-      transitionBuilder: (
-        BuildContext context,
-        Animation<double> animation,
-        Animation<double> secondaryAnimation,
-        Widget child,
-      ) => alertAnimation == null ?
-          _showAnimation(animation, secondaryAnimation, child):
-           alertAnimation(context, animation, secondaryAnimation, child)
-    );
+        context: context,
+        pageBuilder: (BuildContext buildContext, Animation<double> animation,
+            Animation<double> secondaryAnimation) {
+          return _buildDialog();
+        },
+        barrierDismissible: style.isOverlayTapDismiss,
+        barrierLabel:
+            MaterialLocalizations.of(context).modalBarrierDismissLabel,
+        barrierColor: style.overlayColor,
+        useRootNavigator: true,
+        transitionDuration: style.animationDuration,
+        transitionBuilder: (
+          BuildContext context,
+          Animation<double> animation,
+          Animation<double> secondaryAnimation,
+          Widget child,
+        ) =>
+            alertAnimation == null
+                ? _showAnimation(animation, secondaryAnimation, child)
+                : alertAnimation(
+                    context, animation, secondaryAnimation, child));
   }
 
   // Will be added in next version.
@@ -95,6 +96,7 @@ class Alert {
               backgroundColor: style.backgroundColor ??
                   Theme.of(context).dialogBackgroundColor,
               shape: style.alertBorder ?? _defaultShape(),
+              elevation: style.alertElevation,
               titlePadding: const EdgeInsets.all(0.0),
               title: Container(
                 child: Center(
@@ -161,8 +163,9 @@ class Alert {
             padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
             child: GestureDetector(
               onTap: () {
-                Navigator.of(context, rootNavigator: true).pop();
-                if (closeFunction != null) {
+                if (closeFunction == null) {
+                  Navigator.of(context, rootNavigator: true).pop();
+                } else {
                   closeFunction();
                 }
               },
