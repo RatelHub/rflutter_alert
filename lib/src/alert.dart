@@ -28,7 +28,6 @@ class Alert {
   final String desc;
   final Widget content;
   final List<DialogButton> buttons;
-  final ButtonsContainer buttonsContainer;
   final Function closeFunction;
   final Icon closeIcon;
   final bool onWillPopActive;
@@ -46,7 +45,6 @@ class Alert {
     this.desc,
     this.content,
     this.buttons,
-    this.buttonsContainer = ButtonsContainer.row,
     this.closeFunction,
     this.closeIcon,
     this.onWillPopActive = false,
@@ -133,19 +131,16 @@ class Alert {
                 ),
               ),
               contentPadding: style.buttonAreaPadding,
-              content: buttonsContainer == ButtonsContainer.row
+              content: style.buttonsDirection == ButtonsDirection.row
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: _getButtons(),
                     )
-                  : Container(
-                      alignment: Alignment.center,
-                      height: 150,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: _getButtons(),
-                      ),
+                  : Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: _getButtons(),
                     )),
         ),
       ),
@@ -200,7 +195,8 @@ class Alert {
               padding: const EdgeInsets.only(left: 2, right: 2),
               child: button,
             );
-            if (button.width != null && buttons.length == 1) {
+            if ((button.width != null && buttons.length == 1) ||
+                style.buttonsDirection == ButtonsDirection.column) {
               expandedButtons.add(buttonWidget);
             } else {
               expandedButtons.add(Expanded(
@@ -210,17 +206,19 @@ class Alert {
           },
         );
       } else {
-        expandedButtons.add(
-          Expanded(
-            child: DialogButton(
-              child: Text(
-                "CANCEL",
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
-              onPressed: () => Navigator.pop(context),
-            ),
+        Widget cancelButton = DialogButton(
+          child: Text(
+            "CANCEL",
+            style: TextStyle(color: Colors.white, fontSize: 20),
           ),
+          onPressed: () => Navigator.pop(context),
         );
+        if (style.buttonsDirection == ButtonsDirection.row) {
+          cancelButton = Expanded(
+            child: cancelButton,
+          );
+        }
+        expandedButtons.add(cancelButton);
       }
     }
     return expandedButtons;

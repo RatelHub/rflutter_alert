@@ -26,13 +26,16 @@ class AlertStyle {
   final TextAlign descTextAlign;
   final EdgeInsets buttonAreaPadding;
   final BoxConstraints constraints;
+  final ButtonsDirection buttonsDirection;
 
   /// Alert style constructor function
   /// The [animationType] parameter is used for transitions. Default: "fromBottom"
   /// The [animationDuration] parameter is used to set the animation transition time. Default: "200 ms"
   /// The [alertBorder] parameter sets border.
+  /// The [isButtonVisible] paramater is used to decide hide or display buttons
   /// The [isCloseButton] parameter sets visibility of the close button. Default: "true"
   /// The [isOverlayTapDismiss] parameter sets closing the alert by clicking outside. Default: "true"
+  /// The [backgroundColor] parameter sets the background color.
   /// The [overlayColor] parameter sets the background color of the outside. Default: "Color(0xDD000000)"
   /// The [titleStyle] parameter sets alert title text style.
   /// The [titleTextAlign] parameter sets alignment of the title.
@@ -40,25 +43,28 @@ class AlertStyle {
   /// The [descTextAlign] parameter sets alignment of the desc.
   /// The [buttonAreaPadding] parameter sets button area padding.
   /// The [constraints] parameter sets Alert size.
-  const AlertStyle(
-      {this.animationType = AnimationType.fromBottom,
-      this.animationDuration = const Duration(milliseconds: 200),
-      this.alertBorder,
-      this.isButtonVisible = true,
-      this.isCloseButton = true,
-      this.isOverlayTapDismiss = true,
-      this.backgroundColor,
-      this.overlayColor = Colors.black87,
-      this.titleStyle = const TextStyle(
-          color: Colors.black,
-          fontWeight: FontWeight.w500,
-          fontStyle: FontStyle.normal),
-      this.titleTextAlign = TextAlign.center,
-      this.descStyle = const TextStyle(
-          color: Colors.black,
-          fontWeight: FontWeight.w400,
-          fontStyle: FontStyle.normal),
-      this.descTextAlign = TextAlign.center,
-      this.buttonAreaPadding = const EdgeInsets.all(20.0),
-      this.constraints});
+  /// The [buttonsDirection] parameter sets button container as Row or Col.
+  const AlertStyle({
+    this.animationType = AnimationType.fromBottom,
+    this.animationDuration = const Duration(milliseconds: 200),
+    this.alertBorder,
+    this.isButtonVisible = true,
+    this.isCloseButton = true,
+    this.isOverlayTapDismiss = true,
+    this.backgroundColor,
+    this.overlayColor = Colors.black87,
+    this.titleStyle = const TextStyle(
+        color: Colors.black,
+        fontWeight: FontWeight.w500,
+        fontStyle: FontStyle.normal),
+    this.titleTextAlign = TextAlign.center,
+    this.descStyle = const TextStyle(
+        color: Colors.black,
+        fontWeight: FontWeight.w400,
+        fontStyle: FontStyle.normal),
+    this.descTextAlign = TextAlign.center,
+    this.buttonAreaPadding = const EdgeInsets.all(20.0),
+    this.constraints,
+    this.buttonsDirection = ButtonsDirection.row,
+  });
 }
