@@ -42,3 +42,6 @@
 * When user provides closeFunction, user should close alert with dismiss()
 * Alert container elevation based on AlertStyle paramater now.
 * HighlightColor and SplashColor of button customization added for ripple effect.
+
+## [1.0.8] - 10 September, 2020
+* Code formatted and version info fixed.

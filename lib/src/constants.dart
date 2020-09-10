@@ -21,4 +21,8 @@ enum ButtonsDirection { row, column }
 /// Library images path
 const String kImagePath = "assets/images";
 
-typedef AlertAnimation = Widget Function(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child);
+typedef AlertAnimation = Widget Function(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child);
