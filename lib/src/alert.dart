@@ -15,6 +15,7 @@ import 'animation_transition.dart';
 import 'constants.dart';
 import 'dialog_button.dart';
 
+
 /// Main class to create alerts.
 ///
 /// You must call the "show()" method to view the alert class you have defined.
@@ -31,6 +32,7 @@ class Alert {
   final Function closeFunction;
   final Icon closeIcon;
   final bool onWillPopActive;
+  final AlertAnimation alertAnimation;
 
   /// Alert constructor
   ///
@@ -48,6 +50,7 @@ class Alert {
     this.closeFunction,
     this.closeIcon,
     this.onWillPopActive = false,
+    this.alertAnimation,
   });
 
   /// Displays defined alert window
@@ -68,8 +71,9 @@ class Alert {
         Animation<double> animation,
         Animation<double> secondaryAnimation,
         Widget child,
-      ) =>
-          _showAnimation(animation, secondaryAnimation, child),
+      ) => alertAnimation == null ?
+          _showAnimation(animation, secondaryAnimation, child):
+           alertAnimation(context, animation, secondaryAnimation, child)
     );
   }
 
@@ -157,7 +161,7 @@ class Alert {
             padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
             child: GestureDetector(
               onTap: () {
-                Navigator.pop(context);
+                Navigator.of(context, rootNavigator: true).pop();
                 if (closeFunction != null) {
                   closeFunction();
                 }

@@ -31,6 +31,10 @@ class PopupDialog extends StatelessWidget {
               onPressed: () => _onBasicAlertPressed(context),
             ),
             RaisedButton(
+              child: Text('Custom Animation Alert'),
+              onPressed: () => _onCustomAnimationAlertPressed(context),
+            ),
+            RaisedButton(
               child: Text('Alert with Button'),
               onPressed: () => _onAlertButtonPressed(context),
             ),
@@ -59,10 +63,30 @@ class PopupDialog extends StatelessWidget {
 // The easiest way for creating RFlutter Alert
   _onBasicAlertPressed(context) {
     Alert(
-            context: context,
-            title: "RFLUTTER ALERT",
-            desc: "Flutter is more awesome with RFlutter Alert.")
-        .show();
+      context: context,
+      title: "RFLUTTER ALERT",
+      desc: "Flutter is more awesome with RFlutter Alert.",
+    ).show();
+  }
+
+//Custom animation alert
+  _onCustomAnimationAlertPressed(context) {
+    Alert(
+      context: context,
+      title: "RFLUTTER ALERT",
+      desc: "Flutter is more awesome with RFlutter Alert.",
+      alertAnimation: FadeAlertAnimation,
+    ).show();
+  }
+
+  Widget FadeAlertAnimation(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation, Widget child) {
+    return Align(
+      child: FadeTransition(
+        opacity: animation,
+        child: child,
+      ),
+    );
   }
 
 // Alert with single button.
@@ -120,21 +144,16 @@ class PopupDialog extends StatelessWidget {
   _onAlertWithStylePressed(context) {
     // Reusable alert style
     var alertStyle = AlertStyle(
-        animationType: AnimationType.fromTop,
-        isCloseButton: false,
-        isOverlayTapDismiss: false,
-        descStyle: TextStyle(fontWeight: FontWeight.bold),
-        animationDuration: Duration(milliseconds: 400),
-        alertBorder: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(0.0),
-          side: BorderSide(
-            color: Colors.grey,
-          ),
-        ),
-        titleStyle: TextStyle(
-          color: Colors.red,
-        ),
-        constraints: BoxConstraints.expand(width: 300));
+      //First to chars "55" represents transparency of color
+      overlayColor: Color(0x55000000)
+    );
+
+    Alert(
+      style: alertStyle,
+      context: context,
+      title: "RFLUTTER ALERT",
+      desc: "Flutter is more awesome with RFlutter Alert.",
+    ).show();
 
     // Alert dialog using custom alert style
     Alert(

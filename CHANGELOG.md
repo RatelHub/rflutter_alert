@@ -1,5 +1,4 @@
 ## [1.0.0] - 08 December, 2018
-
 * Single line basic alert
 * Adding buttons dynamically (as much as you want)
 * Predefined beautiful alert styles (success, error, warning, info)
@@ -12,18 +11,14 @@
 	* Assign Title and desc styles
 	* Change dialog border style
 	
-
-
+	
 ## [1.0.3] - 02 July, 2019
-
 * Added close callback function
 * Added size constraint
 * Added SingleChildScrollView for keyboard bug
 
 
-
 ## [1.0.4] - 09 September, 2020
-
 * Added hide buttons option
 * More parameters for title styling ext.
 * User can change the close button icon now.
@@ -32,9 +27,12 @@
     * Bottom shadow clipping
     * Example project
     * Null method call
-    
-    
-    
+   
+     
 ## [1.0.5] - 09 September, 2020
-
 * Code formatted and version info fixed.
+
+
+## [1.0.6] - 10 September, 2020
+* Custom Animation support
+* Fix for close icon

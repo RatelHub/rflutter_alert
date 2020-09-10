@@ -68,3 +68,4 @@ class AlertStyle {
     this.buttonsDirection = ButtonsDirection.row,
   });
 }
+
