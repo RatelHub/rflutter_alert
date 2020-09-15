@@ -85,17 +85,19 @@ class Alert {
 
   // Alert dialog content widget
   Widget _buildDialog() {
-    final Widget _child = Center(
-      child: ConstrainedBox(
-        constraints: style.constraints ??
-            BoxConstraints.expand(
-                width: double.infinity, height: double.infinity),
-        child: Center(
+    final Widget _child = ConstrainedBox(
+      constraints: style.constraints ??
+          BoxConstraints.expand(
+              width: double.infinity, height: double.infinity),
+      child: Align(
+        alignment: style.alertAlignment,
+        child: SingleChildScrollView(
           child: AlertDialog(
               key: Key(id),
               backgroundColor: style.backgroundColor ??
                   Theme.of(context).dialogBackgroundColor,
               shape: style.alertBorder ?? _defaultShape(),
+              insetPadding: style.alertPadding,
               elevation: style.alertElevation,
               titlePadding: const EdgeInsets.all(0.0),
               title: Container(

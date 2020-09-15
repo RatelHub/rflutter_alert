@@ -162,6 +162,7 @@ class PopupDialog extends StatelessWidget {
       //First to chars "55" represents transparency of color
       overlayColor: Color(0x55000000),
       alertElevation: 0,
+      alertAlignment: Alignment.topCenter
     );
 
     // Alert dialog using custom alert style

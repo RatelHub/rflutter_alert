@@ -28,6 +28,8 @@ class AlertStyle {
   final BoxConstraints constraints;
   final ButtonsDirection buttonsDirection;
   final double alertElevation;
+  final EdgeInsets alertPadding;
+  final AlignmentGeometry alertAlignment;
 
   /// Alert style constructor function
   /// The [animationType] parameter is used for transitions. Default: "fromBottom"
@@ -46,6 +48,7 @@ class AlertStyle {
   /// The [constraints] parameter sets Alert size.
   /// The [buttonsDirection] parameter sets button container as Row or Col.
   /// The [alertElevation] parameter sets elevation of alert dialog container.
+  /// The [alertPadding] parameter sets alert area padding.
   const AlertStyle({
     this.animationType = AnimationType.fromBottom,
     this.animationDuration = const Duration(milliseconds: 200),
@@ -69,5 +72,7 @@ class AlertStyle {
     this.constraints,
     this.buttonsDirection = ButtonsDirection.row,
     this.alertElevation,
+    this.alertPadding = defaultAlertPadding,
+    this.alertAlignment = Alignment.center,
   });
 }
