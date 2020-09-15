@@ -1,3 +1,6 @@
+## [1.1.0] - 15 September, 2020
+* Code formatted and version info fixed.
+
 ## [1.0.9] - 15 September, 2020
 * Alignment support for Alert added.
 * Alert Padding paramater support added.
