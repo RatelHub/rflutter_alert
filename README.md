@@ -211,6 +211,55 @@ And assing your `AlertStyle` object to Alert's `style` field.
         ]).show();
 ```
 
+## Alert when working with Form
+
+```dart
+Alert(
+        context: context,
+        title: "LOGIN",
+        content: Form(
+          key: _formKey, // Your Form Key
+          child: Column(
+            children: <Widget>[
+              TextFormField(
+                controller: _email,
+                validator: (val) => val.isEmpty ? 'Please enter an email' : null,
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                  icon: Icon(Icons.email),
+                ),
+              ),
+              TextFormField(
+                controller: _password,
+                autofocus: true,
+                obscureText: true,
+                validator: (val) => val.isEmpty ? 'Please enter a password' : null,
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  icon: Icon(Icons.lock),
+                ),
+              ),
+	      // Put Dialog Buttons Inside the Form
+              DialogButton(
+                onPressed: () {
+                  if (_formKey.currentState.validate()) {
+                    // Code logic here
+                  }
+                },
+                child: Text(
+                  "LOGIN",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+              ),
+            ],
+          ),
+        ),
+        buttons: [
+          // EMPTY THIS IF YOU DO NOT WANT "CANCEL" BUTTON SHOWING UP
+        ],
+      ).show();
+```
+
 
 ## Contributions
 * If you **found a bug**, open an issue.
