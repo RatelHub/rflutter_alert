@@ -2,7 +2,7 @@
  * rflutter_alert
  * Created by Ratel
  * https://ratel.com.tr
- * 
+ *
  * Copyright (c) 2018 Ratel, LLC. All rights reserved.
  * See LICENSE for distribution and usage details.
  */
@@ -29,7 +29,7 @@ class Alert {
   final Widget content;
   final List<DialogButton> buttons;
   final Function closeFunction;
-  final Icon closeIcon;
+  final Widget closeIcon;
   final bool onWillPopActive;
   final AlertAnimation alertAnimation;
 
