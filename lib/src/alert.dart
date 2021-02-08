@@ -32,6 +32,7 @@ class Alert {
   final Icon closeIcon;
   final bool onWillPopActive;
   final AlertAnimation alertAnimation;
+  final bool useRootNavigator;
 
   /// Alert constructor
   ///
@@ -50,6 +51,7 @@ class Alert {
     this.closeIcon,
     this.onWillPopActive = false,
     this.alertAnimation,
+    this.useRootNavigator = true,
   });
 
   /// Displays defined alert window
@@ -64,7 +66,7 @@ class Alert {
         barrierLabel:
             MaterialLocalizations.of(context).modalBarrierDismissLabel,
         barrierColor: style.overlayColor,
-        useRootNavigator: true,
+        useRootNavigator: useRootNavigator,
         transitionDuration: style.animationDuration,
         transitionBuilder: (
           BuildContext context,
