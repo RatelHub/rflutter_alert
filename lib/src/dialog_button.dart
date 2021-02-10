@@ -12,22 +12,22 @@ import 'package:flutter/material.dart';
 ///
 /// [child] and [onPressed] parameters are required.
 class DialogButton extends StatelessWidget {
-  final Widget child;
-  final double width;
+  final Widget? child;
+  final double? width;
   final double height;
-  final Color color;
-  final Color highlightColor;
-  final Color splashColor;
-  final Gradient gradient;
-  final BorderRadius radius;
-  final Function onPressed;
-  final BoxBorder border;
+  final Color? color;
+  final Color? highlightColor;
+  final Color? splashColor;
+  final Gradient? gradient;
+  final BorderRadius? radius;
+  final void Function()? onPressed;
+  final BoxBorder? border;
   final EdgeInsets padding;
   final EdgeInsets margin;
 
   /// DialogButton constructor
   DialogButton({
-    Key key,
+    Key? key,
     @required this.child,
     this.width,
     this.height = 40.0,
