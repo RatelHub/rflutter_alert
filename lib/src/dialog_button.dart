@@ -20,7 +20,7 @@ class DialogButton extends StatelessWidget {
   final Color? splashColor;
   final Gradient? gradient;
   final BorderRadius? radius;
-  final void Function()? onPressed;
+  final VoidCallback? onPressed;
   final BoxBorder? border;
   final EdgeInsets padding;
   final EdgeInsets margin;
@@ -28,7 +28,7 @@ class DialogButton extends StatelessWidget {
   /// DialogButton constructor
   DialogButton({
     Key? key,
-    @required this.child,
+    required this.child,
     this.width,
     this.height = 40.0,
     this.color,
@@ -39,7 +39,7 @@ class DialogButton extends StatelessWidget {
     this.border,
     this.padding = const EdgeInsets.only(left: 6, right: 6),
     this.margin = const EdgeInsets.all(6),
-    @required this.onPressed,
+    required this.onPressed,
   }) : super(key: key);
 
   /// Creates alert buttons based on constructor params
