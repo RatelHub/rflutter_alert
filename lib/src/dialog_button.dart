@@ -19,7 +19,7 @@ class DialogButton extends StatelessWidget {
   final Color? highlightColor;
   final Color? splashColor;
   final Gradient? gradient;
-  final BorderRadius? radius;
+  final BorderRadius radius;
   final VoidCallback? onPressed;
   final BoxBorder? border;
   final EdgeInsets padding;
@@ -35,7 +35,7 @@ class DialogButton extends StatelessWidget {
     this.highlightColor,
     this.splashColor,
     this.gradient,
-    this.radius,
+    this.radius = const BorderRadius.all(Radius.circular(6)),
     this.border,
     this.padding = const EdgeInsets.only(left: 6, right: 6),
     this.margin = const EdgeInsets.all(6),
@@ -53,7 +53,7 @@ class DialogButton extends StatelessWidget {
       decoration: BoxDecoration(
           color: color ?? Theme.of(context).accentColor,
           gradient: gradient,
-          borderRadius: radius ?? BorderRadius.circular(6),
+          borderRadius: radius,
           border: border ?? Border.all(color: Colors.transparent, width: 0)),
       child: Material(
         color: Colors.transparent,
