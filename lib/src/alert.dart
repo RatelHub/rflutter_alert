@@ -82,7 +82,7 @@ class Alert {
 
   // Will be added in next version.
   Future<void> dismiss() async {
-    Navigator.of(context, rootNavigator: true).pop();
+    Navigator.of(context, rootNavigator: useRootNavigator).pop();
   }
 
   // Alert dialog content widget
@@ -168,7 +168,7 @@ class Alert {
             child: GestureDetector(
               onTap: () {
                 if (closeFunction == null) {
-                  Navigator.of(context, rootNavigator: true).pop();
+                  Navigator.of(context, rootNavigator: useRootNavigator).pop();
                 } else {
                   closeFunction();
                 }
