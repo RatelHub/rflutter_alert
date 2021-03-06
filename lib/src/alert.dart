@@ -26,7 +26,7 @@ class Alert {
   final Widget? image;
   final String title;
   final String? desc;
-  final Widget? content;
+  final Widget content;
   final List<DialogButton>? buttons;
   final Function? closeFunction;
   final Icon? closeIcon;
@@ -44,7 +44,7 @@ class Alert {
     this.image,
     required this.title,
     this.desc,
-    this.content,
+    this.content = const SizedBox(),
     this.buttons,
     this.closeFunction,
     this.closeIcon,
@@ -130,7 +130,7 @@ class Alert {
                                     style: style.descStyle,
                                     textAlign: style.descTextAlign,
                                   ),
-                            content == null ? Container() : content!,
+                            content,
                           ],
                         ),
                       )
@@ -284,25 +284,19 @@ class Alert {
       case AnimationType.fromRight:
         return AnimationTransition.fromRight(
             animation, secondaryAnimation, child);
-        break;
       case AnimationType.fromLeft:
         return AnimationTransition.fromLeft(
             animation, secondaryAnimation, child);
-        break;
       case AnimationType.fromBottom:
         return AnimationTransition.fromBottom(
             animation, secondaryAnimation, child);
-        break;
       case AnimationType.grow:
         return AnimationTransition.grow(animation, secondaryAnimation, child);
-        break;
       case AnimationType.shrink:
         return AnimationTransition.shrink(animation, secondaryAnimation, child);
-        break;
       case AnimationType.fromTop:
         return AnimationTransition.fromTop(
             animation, secondaryAnimation, child);
-        break;
     }
   }
 }
