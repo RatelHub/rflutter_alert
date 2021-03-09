@@ -19,32 +19,32 @@ import 'dialog_button.dart';
 ///
 /// You must call the "show()" method to view the alert class you have defined.
 class Alert {
-  final String id;
+  final String? id;
   final BuildContext context;
-  final AlertType type;
+  final AlertType? type;
   final AlertStyle style;
-  final Widget image;
+  final Widget? image;
   final String title;
-  final String desc;
+  final String? desc;
   final Widget content;
-  final List<DialogButton> buttons;
-  final Function closeFunction;
-  final Icon closeIcon;
+  final List<DialogButton>? buttons;
+  final Function? closeFunction;
+  final Icon? closeIcon;
   final bool onWillPopActive;
-  final AlertAnimation alertAnimation;
+  final AlertAnimation? alertAnimation;
 
   /// Alert constructor
   ///
   /// [context], [title] are required.
   Alert({
-    @required this.context,
+    required this.context,
     this.id,
     this.type,
     this.style = const AlertStyle(),
     this.image,
-    @required this.title,
+    required this.title,
     this.desc,
-    this.content,
+    this.content = const SizedBox(),
     this.buttons,
     this.closeFunction,
     this.closeIcon,
@@ -53,7 +53,7 @@ class Alert {
   });
 
   /// Displays defined alert window
-  Future<bool> show() async {
+  Future<bool?> show() async {
     return await showGeneralDialog(
         context: context,
         pageBuilder: (BuildContext buildContext, Animation<double> animation,
@@ -74,7 +74,7 @@ class Alert {
         ) =>
             alertAnimation == null
                 ? _showAnimation(animation, secondaryAnimation, child)
-                : alertAnimation(
+                : alertAnimation!(
                     context, animation, secondaryAnimation, child));
   }
 
@@ -93,7 +93,7 @@ class Alert {
         alignment: style.alertAlignment,
         child: SingleChildScrollView(
           child: AlertDialog(
-              key: Key(id),
+              key: id == null ? null : Key(id!),
               backgroundColor: style.backgroundColor ??
                   Theme.of(context).dialogBackgroundColor,
               shape: style.alertBorder ?? _defaultShape(),
@@ -126,11 +126,11 @@ class Alert {
                             desc == null
                                 ? Container()
                                 : Text(
-                                    desc,
+                                    desc!,
                                     style: style.descStyle,
                                     textAlign: style.descTextAlign,
                                   ),
-                            content == null ? Container() : content,
+                            content,
                           ],
                         ),
                       )
@@ -168,7 +168,7 @@ class Alert {
                 if (closeFunction == null) {
                   Navigator.of(context, rootNavigator: true).pop();
                 } else {
-                  closeFunction();
+                  closeFunction!();
                 }
               },
               child: Container(
@@ -198,13 +198,13 @@ class Alert {
     List<Widget> expandedButtons = [];
     if (style.isButtonVisible) {
       if (buttons != null) {
-        buttons.forEach(
+        buttons!.forEach(
           (button) {
             var buttonWidget = Padding(
               padding: const EdgeInsets.only(left: 2, right: 2),
               child: button,
             );
-            if ((button.width != null && buttons.length == 1) ||
+            if ((button.width != null && buttons!.length == 1) ||
                 style.buttonsDirection == ButtonsDirection.column) {
               expandedButtons.add(buttonWidget);
             } else {
@@ -284,25 +284,19 @@ class Alert {
       case AnimationType.fromRight:
         return AnimationTransition.fromRight(
             animation, secondaryAnimation, child);
-        break;
       case AnimationType.fromLeft:
         return AnimationTransition.fromLeft(
             animation, secondaryAnimation, child);
-        break;
       case AnimationType.fromBottom:
         return AnimationTransition.fromBottom(
             animation, secondaryAnimation, child);
-        break;
       case AnimationType.grow:
         return AnimationTransition.grow(animation, secondaryAnimation, child);
-        break;
       case AnimationType.shrink:
         return AnimationTransition.shrink(animation, secondaryAnimation, child);
-        break;
       case AnimationType.fromTop:
         return AnimationTransition.fromTop(
             animation, secondaryAnimation, child);
-        break;
     }
   }
 }

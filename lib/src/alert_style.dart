@@ -14,20 +14,20 @@ import 'constants.dart';
 class AlertStyle {
   final AnimationType animationType;
   final Duration animationDuration;
-  final ShapeBorder alertBorder;
+  final ShapeBorder? alertBorder;
   final bool isButtonVisible;
   final bool isCloseButton;
   final bool isOverlayTapDismiss;
-  final Color backgroundColor;
+  final Color? backgroundColor;
   final Color overlayColor;
   final TextStyle titleStyle;
   final TextStyle descStyle;
   final TextAlign titleTextAlign;
   final TextAlign descTextAlign;
   final EdgeInsets buttonAreaPadding;
-  final BoxConstraints constraints;
+  final BoxConstraints? constraints;
   final ButtonsDirection buttonsDirection;
-  final double alertElevation;
+  final double? alertElevation;
   final EdgeInsets alertPadding;
   final AlignmentGeometry alertAlignment;
 
