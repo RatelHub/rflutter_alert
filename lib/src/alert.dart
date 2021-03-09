@@ -56,13 +56,11 @@ class Alert {
   Future<bool?> show() async {
     return await showGeneralDialog(
         context: context,
-        pageBuilder: (BuildContext buildContext, Animation<double> animation,
-            Animation<double> secondaryAnimation) {
+        pageBuilder: (BuildContext buildContext, Animation<double> animation, Animation<double> secondaryAnimation) {
           return _buildDialog();
         },
         barrierDismissible: style.isOverlayTapDismiss,
-        barrierLabel:
-            MaterialLocalizations.of(context).modalBarrierDismissLabel,
+        barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
         barrierColor: style.overlayColor,
         useRootNavigator: true,
         transitionDuration: style.animationDuration,
@@ -74,8 +72,7 @@ class Alert {
         ) =>
             alertAnimation == null
                 ? _showAnimation(animation, secondaryAnimation, child)
-                : alertAnimation!(
-                    context, animation, secondaryAnimation, child));
+                : alertAnimation!(context, animation, secondaryAnimation, child));
   }
 
   // Will be added in next version.
@@ -86,16 +83,13 @@ class Alert {
   // Alert dialog content widget
   Widget _buildDialog() {
     final Widget _child = ConstrainedBox(
-      constraints: style.constraints ??
-          BoxConstraints.expand(
-              width: double.infinity, height: double.infinity),
+      constraints: style.constraints ?? BoxConstraints.expand(width: double.infinity, height: double.infinity),
       child: Align(
         alignment: style.alertAlignment,
         child: SingleChildScrollView(
           child: AlertDialog(
               key: id == null ? null : Key(id!),
-              backgroundColor: style.backgroundColor ??
-                  Theme.of(context).dialogBackgroundColor,
+              backgroundColor: style.backgroundColor ?? Theme.of(context).dialogBackgroundColor,
               shape: style.alertBorder ?? _defaultShape(),
               insetPadding: style.alertPadding,
               elevation: style.alertElevation,
@@ -107,8 +101,7 @@ class Alert {
                     children: <Widget>[
                       _getCloseButton(),
                       Padding(
-                        padding: EdgeInsets.fromLTRB(
-                            20, (style.isCloseButton ? 0 : 10), 20, 0),
+                        padding: EdgeInsets.fromLTRB(20, (style.isCloseButton ? 0 : 10), 20, 0),
                         child: Column(
                           children: <Widget>[
                             _getImage(),
@@ -153,9 +146,7 @@ class Alert {
         ),
       ),
     );
-    return onWillPopActive
-        ? WillPopScope(onWillPop: () async => false, child: _child)
-        : _child;
+    return onWillPopActive ? WillPopScope(onWillPop: () async => false, child: _child) : _child;
   }
 
 // Returns the close button on the top right
@@ -204,8 +195,7 @@ class Alert {
               padding: const EdgeInsets.only(left: 2, right: 2),
               child: button,
             );
-            if ((button.width != null && buttons!.length == 1) ||
-                style.buttonsDirection == ButtonsDirection.column) {
+            if ((button.width != null && buttons!.length == 1) || style.buttonsDirection == ButtonsDirection.column) {
               expandedButtons.add(buttonWidget);
             } else {
               expandedButtons.add(Expanded(
@@ -272,6 +262,7 @@ class Alert {
         );
         break;
       case AlertType.none:
+      default:
         response = Container();
         break;
     }
@@ -282,21 +273,17 @@ class Alert {
   _showAnimation(animation, secondaryAnimation, child) {
     switch (style.animationType) {
       case AnimationType.fromRight:
-        return AnimationTransition.fromRight(
-            animation, secondaryAnimation, child);
+        return AnimationTransition.fromRight(animation, secondaryAnimation, child);
       case AnimationType.fromLeft:
-        return AnimationTransition.fromLeft(
-            animation, secondaryAnimation, child);
+        return AnimationTransition.fromLeft(animation, secondaryAnimation, child);
       case AnimationType.fromBottom:
-        return AnimationTransition.fromBottom(
-            animation, secondaryAnimation, child);
+        return AnimationTransition.fromBottom(animation, secondaryAnimation, child);
       case AnimationType.grow:
         return AnimationTransition.grow(animation, secondaryAnimation, child);
       case AnimationType.shrink:
         return AnimationTransition.shrink(animation, secondaryAnimation, child);
       case AnimationType.fromTop:
-        return AnimationTransition.fromTop(
-            animation, secondaryAnimation, child);
+        return AnimationTransition.fromTop(animation, secondaryAnimation, child);
     }
   }
 }

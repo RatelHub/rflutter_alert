@@ -1,5 +1,10 @@
 name: example
 description: An example project for the flutter popup dialog.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none'
+
 version: 1.0.0+1
 
 environment:

@@ -1,5 +1,10 @@
-## [2.0.0] - 24 February, 2021
+## [2.0.1] - 09 March, 2021
+* Close icon is widget now.
+* Code formatted and version info fixed.
+
+## [2.0.0] - 09 March, 2021
 * Migrate to null safety.
+* Android app migration for flutter embed.
 
 ## [1.1.0] - 15 September, 2020
 * Code formatted and version info fixed.
