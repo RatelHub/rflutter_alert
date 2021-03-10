@@ -31,6 +31,7 @@ class Alert {
   final Function? closeFunction;
   final Widget? closeIcon;
   final bool onWillPopActive;
+  final bool useRootNavigator;
   final AlertAnimation? alertAnimation;
 
   /// Alert constructor
@@ -50,6 +51,7 @@ class Alert {
     this.closeIcon,
     this.onWillPopActive = false,
     this.alertAnimation,
+    this.useRootNavigator = true,
   });
 
   /// Displays defined alert window
@@ -62,7 +64,7 @@ class Alert {
         barrierDismissible: style.isOverlayTapDismiss,
         barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
         barrierColor: style.overlayColor,
-        useRootNavigator: true,
+        useRootNavigator: useRootNavigator,
         transitionDuration: style.animationDuration,
         transitionBuilder: (
           BuildContext context,
@@ -77,7 +79,7 @@ class Alert {
 
   // Will be added in next version.
   Future<void> dismiss() async {
-    Navigator.of(context, rootNavigator: true).pop();
+    Navigator.of(context, rootNavigator: useRootNavigator).pop();
   }
 
   // Alert dialog content widget
@@ -157,7 +159,7 @@ class Alert {
             child: GestureDetector(
               onTap: () {
                 if (closeFunction == null) {
-                  Navigator.of(context, rootNavigator: true).pop();
+                  Navigator.of(context, rootNavigator: useRootNavigator).pop();
                 } else {
                   closeFunction!();
                 }
