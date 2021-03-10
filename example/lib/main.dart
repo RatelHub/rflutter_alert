@@ -55,7 +55,7 @@ class PopupDialog extends StatelessWidget {
               child: Text('Alert with Custom Content'),
               onPressed: () => _onAlertWithCustomContentPressed(context),
             ),
-            RaisedButton(
+            ElevatedButton(
               child: Text('Alert with/without Root navigator'),
               onPressed: () => _onAlertWithRootNavigator(context),
             ),
@@ -239,92 +239,83 @@ class PopupDialog extends StatelessWidget {
 
 // Alert without root navigator
   _onAlertWithRootNavigator(BuildContext context) {
-    Navigator.of(context).push(PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) =>
-            CupertinoTabScaffold(
-              tabBar: CupertinoTabBar(
-                items: <BottomNavigationBarItem>[
-                  BottomNavigationBarItem(icon: Icon(Icons.account_circle)),
-                  BottomNavigationBarItem(icon: Icon(Icons.search))
-                ],
-              ),
-              tabBuilder: (BuildContext context, int index) {
-                return CupertinoTabView(
-                  builder: (BuildContext context) {
-                    return CupertinoPageScaffold(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "We are inside a CupertinoTabView, which has it's own navigator.",
-                            style:
-                                TextStyle(inherit: false, color: Colors.black),
-                            textAlign: TextAlign.center,
-                          ),
-                          RaisedButton(
-                            child: Text('Alert without Root navigator'),
-                            onPressed: () => Alert(
-                                context: context,
-                                title:
-                                "pop() use root navigator ?\n\n* False will pop Alert and stay in CupertinoTabView\n* True will pop Alert and CupertinoTabView",
-                                useRootNavigator: false,
-                                buttons: [
-                                  DialogButton(
-                                    onPressed: () =>
-                                        Navigator.of(context).pop(),
-                                    child: Text(
-                                      "false",
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 20),
-                                    ),
-                                  ),
-                                  DialogButton(
-                                    onPressed: () => Navigator.of(context,
-                                        rootNavigator: true)
-                                        .pop(),
-                                    child: Text(
-                                      "true",
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 20),
-                                    ),
-                                  )
-                                ]).show(),
-                          ),
-                          RaisedButton(
-                            child: Text('Alert with Root navigator'),
-                            onPressed: () => Alert(
-                                context: context,
-                                title:
-                                "pop() use root navigator ?\n\n* False will pop CupertinoTabView and raise error in the background !\n* True will pop Alert",
-                                useRootNavigator: true,
-                                buttons: [
-                                  DialogButton(
-                                    onPressed: () =>
-                                        Navigator.of(context).pop(),
-                                    child: Text(
-                                      "false",
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 20),
-                                    ),
-                                  ),
-                                  DialogButton(
-                                    onPressed: () => Navigator.of(context,
-                                        rootNavigator: true)
-                                        .pop(),
-                                    child: Text(
-                                      "true",
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 20),
-                                    ),
-                                  )
-                                ]).show(),
-                          ),
-                        ],
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) => CupertinoTabScaffold(
+          tabBar: CupertinoTabBar(
+            items: <BottomNavigationBarItem>[
+              BottomNavigationBarItem(icon: Icon(Icons.account_circle)),
+              BottomNavigationBarItem(icon: Icon(Icons.search))
+            ],
+          ),
+          tabBuilder: (BuildContext context, int index) {
+            return CupertinoTabView(
+              builder: (BuildContext context) {
+                return CupertinoPageScaffold(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "We are inside a CupertinoTabView, which has it's own navigator.",
+                        style: TextStyle(inherit: false, color: Colors.black),
+                        textAlign: TextAlign.center,
                       ),
-                    );
-                  },
+                      ElevatedButton(
+                        child: Text('Alert without Root navigator'),
+                        onPressed: () => Alert(
+                            context: context,
+                            title:
+                                "pop() use root navigator ?\n\n* False will pop Alert and stay in CupertinoTabView\n* True will pop Alert and CupertinoTabView",
+                            useRootNavigator: false,
+                            buttons: [
+                              DialogButton(
+                                onPressed: () => Navigator.of(context).pop(),
+                                child: Text(
+                                  "false",
+                                  style: TextStyle(color: Colors.white, fontSize: 20),
+                                ),
+                              ),
+                              DialogButton(
+                                onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
+                                child: Text(
+                                  "true",
+                                  style: TextStyle(color: Colors.white, fontSize: 20),
+                                ),
+                              )
+                            ]).show(),
+                      ),
+                      ElevatedButton(
+                        child: Text('Alert with Root navigator'),
+                        onPressed: () => Alert(
+                            context: context,
+                            title:
+                                "pop() use root navigator ?\n\n* False will pop CupertinoTabView and raise error in the background !\n* True will pop Alert",
+                            useRootNavigator: true,
+                            buttons: [
+                              DialogButton(
+                                onPressed: () => Navigator.of(context).pop(),
+                                child: Text(
+                                  "false",
+                                  style: TextStyle(color: Colors.white, fontSize: 20),
+                                ),
+                              ),
+                              DialogButton(
+                                onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
+                                child: Text(
+                                  "true",
+                                  style: TextStyle(color: Colors.white, fontSize: 20),
+                                ),
+                              )
+                            ]).show(),
+                      ),
+                    ],
+                  ),
                 );
               },
-            )));
+            );
+          },
+        ),
+      ),
+    );
   }
 }
