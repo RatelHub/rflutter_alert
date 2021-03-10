@@ -25,7 +25,8 @@ const EdgeInsets defaultAlertPadding =
 const String kImagePath = "assets/images";
 
 typedef AlertAnimation = Widget Function(
-    BuildContext context,
-    Animation<double> animation,
-    Animation<double> secondaryAnimation,
-    Widget child);
+  BuildContext context,
+  Animation<double> animation,
+  Animation<double> secondaryAnimation,
+  Widget child,
+);

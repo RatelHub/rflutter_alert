@@ -1,3 +1,7 @@
+## [2.0.2] - 10 March, 2021
+* Root Navigation using paramatere added.
+* More api docs added.
+
 ## [2.0.1] - 09 March, 2021
 * Close icon is widget now.
 * Code formatted and version info fixed.

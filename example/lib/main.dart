@@ -32,6 +32,10 @@ class PopupDialog extends StatelessWidget {
               onPressed: () => _onBasicAlertPressed(context),
             ),
             ElevatedButton(
+              child: Text('Basic Waiting Alert'),
+              onPressed: () => _onBasicWaitingAlertPressed(context),
+            ),
+            ElevatedButton(
               child: Text('Custom Animation Alert'),
               onPressed: () => _onCustomAnimationAlertPressed(context),
             ),
@@ -72,6 +76,18 @@ class PopupDialog extends StatelessWidget {
       title: "RFLUTTER ALERT",
       desc: "Flutter is more awesome with RFlutter Alert.",
     ).show();
+  }
+
+  // Code will continue after alert is closed.
+  _onBasicWaitingAlertPressed(context) async {
+    await Alert(
+      context: context,
+      title: "RFLUTTER ALERT",
+      desc: "Flutter is more awesome with RFlutter Alert.",
+    ).show();
+
+    // Code will continue after alert is closed.
+    debugPrint("Alert closed now.");
   }
 
 //Custom animation alert
