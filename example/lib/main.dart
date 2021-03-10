@@ -27,31 +27,31 @@ class PopupDialog extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            RaisedButton(
+            ElevatedButton(
               child: Text('Basic Alert'),
               onPressed: () => _onBasicAlertPressed(context),
             ),
-            RaisedButton(
+            ElevatedButton(
               child: Text('Custom Animation Alert'),
               onPressed: () => _onCustomAnimationAlertPressed(context),
             ),
-            RaisedButton(
+            ElevatedButton(
               child: Text('Alert with Button'),
               onPressed: () => _onAlertButtonPressed(context),
             ),
-            RaisedButton(
+            ElevatedButton(
               child: Text('Alert with Buttons'),
               onPressed: () => _onAlertButtonsPressed(context),
             ),
-            RaisedButton(
+            ElevatedButton(
               child: Text('Alert with Style'),
               onPressed: () => _onAlertWithStylePressed(context),
             ),
-            RaisedButton(
+            ElevatedButton(
               child: Text('Alert with Custom Image'),
               onPressed: () => _onAlertWithCustomImagePressed(context),
             ),
-            RaisedButton(
+            ElevatedButton(
               child: Text('Alert with Custom Content'),
               onPressed: () => _onAlertWithCustomContentPressed(context),
             ),
@@ -80,12 +80,16 @@ class PopupDialog extends StatelessWidget {
       context: context,
       title: "RFLUTTER ALERT",
       desc: "Flutter is more awesome with RFlutter Alert.",
-      alertAnimation: FadeAlertAnimation,
+      alertAnimation: fadeAlertAnimation,
     ).show();
   }
 
-  Widget FadeAlertAnimation(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation, Widget child) {
+  Widget fadeAlertAnimation(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
     return Align(
       child: FadeTransition(
         opacity: animation,
@@ -138,7 +142,7 @@ class PopupDialog extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
           gradient: LinearGradient(colors: [
             Color.fromRGBO(116, 116, 191, 1.0),
-            Color.fromRGBO(52, 138, 199, 1.0)
+            Color.fromRGBO(52, 138, 199, 1.0),
           ]),
         )
       ],
