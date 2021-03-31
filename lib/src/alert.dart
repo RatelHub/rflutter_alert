@@ -274,7 +274,6 @@ class Alert {
         );
         break;
       case AlertType.none:
-      default:
         response = Container();
         break;
     }
