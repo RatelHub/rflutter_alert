@@ -4,7 +4,9 @@ RFlutter Alert is super customizable and easy-to-use alert/popup dialogs for Flu
 
 [![Version](https://img.shields.io/badge/version-2.0.2-blue.svg)](https://pub.dartlang.org/packages/rflutter_alert)
 
-<p>
+
+
+<p align="center">
 <img src="https://github.com/ozibrahim/files/raw/master/rflutter_alert_V1.0.2.gif"> 
 </p>
 
