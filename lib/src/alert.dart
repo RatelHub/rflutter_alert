@@ -23,6 +23,7 @@ class Alert {
   final BuildContext context;
   final AlertType? type;
   final AlertStyle style;
+  final EdgeInsets? padding;
   final Widget? image;
   final String title;
   final String? desc;
@@ -42,6 +43,7 @@ class Alert {
     this.id,
     this.type,
     this.style = const AlertStyle(),
+    this.padding,
     this.image,
     required this.title,
     this.desc,
@@ -109,8 +111,9 @@ class Alert {
                     children: <Widget>[
                       _getCloseButton(),
                       Padding(
-                        padding: EdgeInsets.fromLTRB(
-                            20, (style.isCloseButton ? 0 : 10), 20, 0),
+                        padding: padding ??
+                            EdgeInsets.fromLTRB(
+                                20, (style.isCloseButton ? 0 : 10), 20, 0),
                         child: Column(
                           children: <Widget>[
                             _getImage(),
