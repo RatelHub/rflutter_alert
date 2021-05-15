@@ -250,7 +250,7 @@ class Alert {
 
   /// Returns alert image for icon
   Widget _getImage() {
-    Widget response = image ?? Container();
+    Widget response;
     switch (type) {
       case AlertType.success:
         response = Image.asset(
@@ -277,8 +277,10 @@ class Alert {
         );
         break;
       case AlertType.none:
-      default:
         response = Container();
+        break;
+      default:
+        response = image ?? Container();
         break;
     }
     return response;
