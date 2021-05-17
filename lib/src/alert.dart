@@ -25,7 +25,7 @@ class Alert {
   final AlertStyle style;
   final EdgeInsets? padding;
   final Widget? image;
-  final String title;
+  final String? title;
   final String? desc;
   final Widget content;
   final List<DialogButton>? buttons;
@@ -37,7 +37,7 @@ class Alert {
 
   /// Alert constructor
   ///
-  /// [context], [title] are required.
+  /// [context] is required.
   Alert({
     required this.context,
     this.id,
@@ -45,7 +45,7 @@ class Alert {
     this.style = const AlertStyle(),
     this.padding,
     this.image,
-    required this.title,
+    this.title,
     this.desc,
     this.content = const SizedBox(),
     this.buttons,
@@ -117,14 +117,18 @@ class Alert {
                         child: Column(
                           children: <Widget>[
                             _getImage(),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              title,
-                              style: style.titleStyle,
-                              textAlign: style.titleTextAlign,
-                            ),
+                            title == null
+                                ? Container()
+                                : SizedBox(
+                                    height: 15,
+                                  ),
+                            title == null
+                                ? Container()
+                                : Text(
+                                    title!,
+                                    style: style.titleStyle,
+                                    textAlign: style.titleTextAlign,
+                                  ),
                             SizedBox(
                               height: desc == null ? 5 : 10,
                             ),
