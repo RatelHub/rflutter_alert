@@ -275,9 +275,10 @@ class Alert {
         break;
       case AlertType.none:
       default:
-        response = Container();
+        response = image ?? Container();
         break;
     }
+    response = image ?? response;
     return response;
   }
 
