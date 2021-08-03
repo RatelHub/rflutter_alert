@@ -1,3 +1,9 @@
+## [2.0.4] - 10 March, 2021
+* Code formatted.
+
+## [2.0.3] - 10 March, 2021
+* Custom image display problem fixed.
+
 ## [2.0.2] - 10 March, 2021
 * Root Navigation using paramatere added.
 * More api docs added.

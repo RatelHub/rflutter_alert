@@ -257,7 +257,8 @@ class PopupDialog extends StatelessWidget {
   _onAlertWithRootNavigator(BuildContext context) {
     Navigator.of(context).push(
       PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => CupertinoTabScaffold(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            CupertinoTabScaffold(
           tabBar: CupertinoTabBar(
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(icon: Icon(Icons.account_circle)),
@@ -288,14 +289,18 @@ class PopupDialog extends StatelessWidget {
                                 onPressed: () => Navigator.of(context).pop(),
                                 child: Text(
                                   "false",
-                                  style: TextStyle(color: Colors.white, fontSize: 20),
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20),
                                 ),
                               ),
                               DialogButton(
-                                onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
+                                onPressed: () =>
+                                    Navigator.of(context, rootNavigator: true)
+                                        .pop(),
                                 child: Text(
                                   "true",
-                                  style: TextStyle(color: Colors.white, fontSize: 20),
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20),
                                 ),
                               )
                             ]).show(),
@@ -312,14 +317,18 @@ class PopupDialog extends StatelessWidget {
                                 onPressed: () => Navigator.of(context).pop(),
                                 child: Text(
                                   "false",
-                                  style: TextStyle(color: Colors.white, fontSize: 20),
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20),
                                 ),
                               ),
                               DialogButton(
-                                onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
+                                onPressed: () =>
+                                    Navigator.of(context, rootNavigator: true)
+                                        .pop(),
                                 child: Text(
                                   "true",
-                                  style: TextStyle(color: Colors.white, fontSize: 20),
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20),
                                 ),
                               )
                             ]).show(),
