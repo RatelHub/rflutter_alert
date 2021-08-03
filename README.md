@@ -144,7 +144,7 @@ Use the `AlertStyle` class to customize.
       alertAlignment: Alignment.topCenter,
     );
 ```
-And assing your `AlertStyle` object to Alert's `style` field.
+And assign your `AlertStyle` object to Alert's `style` field.
 ```dart
     Alert(
       context: context,
