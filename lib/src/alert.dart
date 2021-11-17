@@ -130,7 +130,7 @@ class Alert {
                                     textAlign: style.titleTextAlign,
                                   ),
                             SizedBox(
-                              height: desc == null ? 5 : 10,
+                              height: desc == null ? 0 : 10,
                             ),
                             desc == null
                                 ? Container()
