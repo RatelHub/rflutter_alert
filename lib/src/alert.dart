@@ -256,6 +256,20 @@ class Alert {
   Widget _getImage() {
     Widget response;
     switch (type) {
+      case AlertType.question:
+        response = CircleAvatar(
+          radius: 42,
+          backgroundColor: Colors.teal,
+          child: CircleAvatar(
+            backgroundColor: Colors.white,
+            radius: 40,
+            child: Icon(
+              Icons.question_mark,
+              size: 40,
+            ),
+          ),
+        );
+        break;
       case AlertType.success:
         response = Image.asset(
           '$kImagePath/icon_success.png',
