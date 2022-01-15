@@ -259,13 +259,14 @@ class Alert {
       case AlertType.question:
         response = CircleAvatar(
           radius: 42,
-          backgroundColor: Colors.teal,
+          backgroundColor: Colors.red,
           child: CircleAvatar(
             backgroundColor: Colors.white,
             radius: 40,
             child: Icon(
               Icons.question_mark,
               size: 40,
+              color: Colors.red,
             ),
           ),
         );
