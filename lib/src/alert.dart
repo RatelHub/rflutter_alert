@@ -280,6 +280,12 @@ class Alert {
           package: 'rflutter_alert',
         );
         break;
+      case AlertType.question:
+        response = Image.asset(
+          '$kImagePath/icon_question.png',
+          package: 'rflutter_alert',
+        );
+        break;
       case AlertType.none:
         response = Container();
         break;

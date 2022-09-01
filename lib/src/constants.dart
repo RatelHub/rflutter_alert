@@ -10,7 +10,7 @@
 import 'package:flutter/material.dart';
 
 /// Alert types
-enum AlertType { error, success, info, warning, none }
+enum AlertType { error, success, info, warning, question, none }
 
 /// Alert animation types
 enum AnimationType { fromRight, fromLeft, fromTop, fromBottom, grow, shrink }
