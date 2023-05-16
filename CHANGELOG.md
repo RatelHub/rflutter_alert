@@ -1,3 +1,6 @@
+## [2.0.5] - 16 May, 2023
+* Fix for Flutter 3.10 and Dart 3.0
+
 ## [2.0.4] - 10 March, 2021
 * Code formatted.
 

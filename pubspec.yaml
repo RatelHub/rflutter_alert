@@ -4,7 +4,7 @@ version: 2.0.5
 homepage: https://github.com/RatelHub/rflutter_alert
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.12.0 <4.0.0"
 
 dependencies:
   flutter:
