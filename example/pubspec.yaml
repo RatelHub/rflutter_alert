@@ -13,7 +13,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: 1.0.0
+  cupertino_icons: 1.0.5
   rflutter_alert:
     path: ../
 
