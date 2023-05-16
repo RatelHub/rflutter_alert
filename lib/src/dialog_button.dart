@@ -52,7 +52,6 @@ class DialogButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: padding,
       margin: margin,
       width: width,
       height: height,
@@ -65,11 +64,15 @@ class DialogButton extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
+          borderRadius: radius,
           highlightColor: highlightColor ?? Theme.of(context).highlightColor,
           splashColor: splashColor ?? Theme.of(context).splashColor,
           onTap: onPressed,
-          child: Center(
-            child: child,
+          child: Padding(
+            padding: padding,
+            child: Center(
+              child: child,
+            ),
           ),
         ),
       ),
