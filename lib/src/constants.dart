@@ -18,6 +18,7 @@ enum AnimationType { fromRight, fromLeft, fromTop, fromBottom, grow, shrink }
 /// Buttons container
 enum ButtonsDirection { row, column }
 
+/// Defines Default Alert Window Padding
 const EdgeInsets defaultAlertPadding =
     EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0);
 

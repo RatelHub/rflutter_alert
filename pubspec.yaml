@@ -1,6 +1,6 @@
 name: rflutter_alert
 description: RFlutter Alert is super customizable and easy-to-use alert / popup dialogs for Flutter. You may create reusable alert styles or add buttons as much as you want with ease.
-version: 2.0.5
+version: 2.0.6
 homepage: https://github.com/RatelHub/rflutter_alert
 
 environment:

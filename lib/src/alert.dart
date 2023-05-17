@@ -168,6 +168,8 @@ class Alert {
         : _child;
   }
 
+  /// Returns Text Widget or Selectable Text Widget with Padding
+  /// based on isSelectable property.
   Widget _getTextWidget(bool isSelectable, String? text, TextStyle textStyle,
       TextAlign textAlign, EdgeInsets edgeInsets) {
     return Padding(
@@ -181,6 +183,8 @@ class Alert {
     );
   }
 
+  /// Returns Text Widget or Selectable Text Widget
+  /// based on isSelectable property.
   Widget _getTextWidgetBySelectable(bool isSelectable, String? text,
       TextStyle textStyle, TextAlign textAlign) {
     if (isSelectable) {

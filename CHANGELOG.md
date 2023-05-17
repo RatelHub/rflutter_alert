@@ -1,3 +1,9 @@
+## [2.0.6] - 17 May, 2023
+* Constraints working now.
+* Selectable title and desc text option added.
+* Padding for title and text option added.
+* Fix for button padding to display ink correctly.
+
 ## [2.0.5] - 16 May, 2023
 * Fix for Flutter 3.10 and Dart 3.0
 
