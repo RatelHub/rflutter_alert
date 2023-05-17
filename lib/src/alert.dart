@@ -115,6 +115,7 @@ class Alert {
                             EdgeInsets.fromLTRB(
                                 20, (style.isCloseButton ? 0 : 10), 20, 0),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
                             _getImage(),
                             title == null
