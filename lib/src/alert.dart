@@ -124,20 +124,22 @@ class Alert {
                                   ),
                             title == null
                                 ? Container()
-                                : Text(
-                                    title!,
-                                    style: style.titleStyle,
-                                    textAlign: style.titleTextAlign,
+                                : _getTextWidget(
+                                    style.isTitleSelectable,
+                                    title,
+                                    style.titleStyle,
+                                    style.titleTextAlign,
                                   ),
                             SizedBox(
                               height: desc == null ? 0 : 10,
                             ),
                             desc == null
                                 ? Container()
-                                : Text(
-                                    desc!,
-                                    style: style.descStyle,
-                                    textAlign: style.descTextAlign,
+                                : _getTextWidget(
+                                    style.isDescSelectable,
+                                    desc,
+                                    style.descStyle,
+                                    style.descTextAlign,
                                   ),
                             content,
                           ],
@@ -165,6 +167,22 @@ class Alert {
     return onWillPopActive
         ? WillPopScope(onWillPop: () async => false, child: _child)
         : _child;
+  }
+
+  Widget _getTextWidget(bool isSelectable, String? text, TextStyle textStyle,
+      TextAlign textAlign) {
+    if (isSelectable) {
+      return SelectableText(
+        text ?? "",
+        style: textStyle,
+        textAlign: textAlign,
+      );
+    } else
+      return Text(
+        text ?? "",
+        style: textStyle,
+        textAlign: textAlign,
+      );
   }
 
   /// Returns the close button on the top right
