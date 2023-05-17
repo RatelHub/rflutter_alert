@@ -32,6 +32,8 @@ class AlertStyle {
   final AlignmentGeometry alertAlignment;
   final bool isTitleSelectable;
   final bool isDescSelectable;
+  final EdgeInsets? titlePadding;
+  final EdgeInsets descPadding;
 
   /// Alert style constructor function
   /// The [animationType] parameter is used for transitions. Default: "fromBottom"
@@ -78,5 +80,7 @@ class AlertStyle {
     this.alertAlignment = Alignment.center,
     this.isTitleSelectable = false,
     this.isDescSelectable = false,
+    this.titlePadding,
+    this.descPadding = const EdgeInsets.all(0.0),
   });
 }

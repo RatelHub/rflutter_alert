@@ -118,30 +118,26 @@ class Alert {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
                             _getImage(),
-                            title == null
-                                ? Container()
-                                : SizedBox(
-                                    height: 15,
-                                  ),
-                            title == null
-                                ? Container()
-                                : _getTextWidget(
-                                    style.isTitleSelectable,
-                                    title,
-                                    style.titleStyle,
-                                    style.titleTextAlign,
-                                  ),
-                            SizedBox(
-                              height: desc == null ? 0 : 10,
-                            ),
-                            desc == null
-                                ? Container()
-                                : _getTextWidget(
-                                    style.isDescSelectable,
-                                    desc,
-                                    style.descStyle,
-                                    style.descTextAlign,
-                                  ),
+                            if (title != null)
+                              _getTextWidget(
+                                style.isTitleSelectable,
+                                title,
+                                style.titleStyle,
+                                style.titleTextAlign,
+                                style.titlePadding ??
+                                    EdgeInsets.only(
+                                      top: 15,
+                                      bottom: desc == null ? 0 : 10,
+                                    ),
+                              ),
+                            if (desc != null)
+                              _getTextWidget(
+                                style.isDescSelectable,
+                                desc,
+                                style.descStyle,
+                                style.descTextAlign,
+                                style.descPadding,
+                              ),
                             content,
                           ],
                         ),
@@ -171,7 +167,20 @@ class Alert {
   }
 
   Widget _getTextWidget(bool isSelectable, String? text, TextStyle textStyle,
-      TextAlign textAlign) {
+      TextAlign textAlign, EdgeInsets edgeInsets) {
+    return Padding(
+      padding: edgeInsets,
+      child: _getTextWidgetBySelectable(
+        isSelectable,
+        text,
+        textStyle,
+        textAlign,
+      ),
+    );
+  }
+
+  Widget _getTextWidgetBySelectable(bool isSelectable, String? text,
+      TextStyle textStyle, TextAlign textAlign) {
     if (isSelectable) {
       return SelectableText(
         text ?? "",
