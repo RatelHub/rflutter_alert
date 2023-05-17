@@ -117,7 +117,9 @@ class Alert {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
-                            _getImage(),
+                            Center(
+                              child: _getImage(),
+                            ),
                             if (title != null)
                               _getTextWidget(
                                 style.isTitleSelectable,
