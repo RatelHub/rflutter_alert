@@ -89,12 +89,12 @@ class Alert {
 
   /// Alert dialog content widget
   Widget _buildDialog() {
-    final Widget _child = ConstrainedBox(
-      constraints: style.constraints ??
-          BoxConstraints.expand(
-              width: double.infinity, height: double.infinity),
-      child: Align(
-        alignment: style.alertAlignment,
+    final Widget _child = Align(
+      alignment: style.alertAlignment,
+      child: ConstrainedBox(
+        constraints: style.constraints ??
+            BoxConstraints.expand(
+                width: double.infinity, height: double.infinity),
         child: SingleChildScrollView(
           child: AlertDialog(
               key: id == null ? null : Key(id!),
