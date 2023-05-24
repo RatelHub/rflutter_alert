@@ -1,3 +1,6 @@
+## [2.0.7] - 24 May, 2023
+* Fix for Default Constraint.
+
 ## [2.0.6] - 17 May, 2023
 * Constraints working now.
 * Selectable title and desc text option added.
