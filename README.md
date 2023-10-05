@@ -216,7 +216,7 @@ And assign your `AlertStyle` object to Alert's `style` field.
 * If you **found a bug**, open an issue.
 * If you **have a feature request**, open an issue.
 * If you **want to contribute**, submit a pull request.
-## Version compatability
+## Version compatibility
 
 See CHANGELOG for all breaking (and non-breaking) changes.
 
